@@ -10,6 +10,7 @@ return {
     -- transparent = true,
     background = {
       -- light = "lotus",
+      transparent = true,
       dark = "gruvbox", -- "wave, dragon"
     },
     colors = {
