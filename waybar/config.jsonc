@@ -14,9 +14,9 @@
   "modules-right": [
     "tray",
     "idle_inhibitor",
-    "network",
     "backlight",
     "pulseaudio",
+    "pulseaudio#microphone",
     "battery",
     "clock"
   ],
@@ -37,7 +37,8 @@
     }
   },
   "battery": {
-    "format": "󰁹 {}%",
+    "format": "{icon}  {capacity}%",
+    "format-icons": ["", "", "", "", ""],
     "bat-compatibility": false
   },
   "backlight": {
@@ -68,10 +69,7 @@
     "format": "{icon} {volume}%",
     "tooltip": false,
     "format-muted": " Muted",
-    "on-click": "pamixer -t",
-    "on-scroll-up": "pamixer -i 5",
-    "on-scroll-down": "pamixer -d 5",
-    "scroll-step": 5,
+    "on-click": "pavucontrol",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -82,7 +80,7 @@
       "default": [
         "",
         "",
-        ""
+        " "
       ]
     }
   },
