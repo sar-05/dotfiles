@@ -11,11 +11,12 @@ return {
   opts = {
     highlight = {
       enable = true,
+      disable = { "latex", "tex" },
     },
     indent = { enable = true },
     auto_install = true, -- automatically install syntax support when entering new file type buffer
     ensure_installed = {
-      'lua',
+      'lua', 'latex',
     },
   },
   config = function (_, opts)
