@@ -86,7 +86,7 @@ mount -t vfat /dev/disk/by-partlabel/EFISYSTEM "$rootmnt"/efi
 
 #Update pacman mirrors and then pacstrap base install
 echo "Pacstrapping..."
-reflector --country GB --age 24 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country MX --age 24 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap -K $rootmnt "${pacstrappacs[@]}" 
 
 echo "Setting up environment..."
