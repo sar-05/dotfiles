@@ -35,14 +35,18 @@ edit = [
 	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
 	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
 ]
-pdf = [
-        { run = 'zathura "$@"', orphan = true, desc = "Open in Zathura (orphaned)" },
+feh = [
+  { run = "feh \"$@\"", orphan = true, desc = "Feh"},
 ]
 open = [
-	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
+  { run = "zathura \"$@\"", orphan = true, desc = "Zathura"},
+  { run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
 	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
 	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 	{ run = 'termux-open "$1"',             desc = "Open", for = "android" },
+]
+onlyoffice = [
+    { run = 'flatpak run org.onlyoffice.desktopeditors "$1"', orphan = true, for = "unix" },
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
@@ -63,12 +67,16 @@ play = [
 
 [open]
 rules = [
-	# Folder
+  #PDF
+  { name = "application/pdf", use = "pdf"},
+  #Docx
+  { name = "*.docx", use = [ "onlyoffice", "open" ] },
+  # Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = [ "feh", "open", "reveal" ] },
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	# Archive
