@@ -87,8 +87,8 @@
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "tooltip": false,
-    "format-source": " {volume}%",
-    "format-source-muted": " Muted",
+    "format-source": "\uf130 {volume}%",
+    "format-source-muted": "\udb80\udf6d Muted",
     "on-click": "pamixer --default-source -t",
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
