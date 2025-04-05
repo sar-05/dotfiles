@@ -29,7 +29,7 @@ mkdir -p ~/.config/gtk-4.0
 
 # Link the theme's GTK4 CSS files
 if [ -d "/usr/share/themes/$THEME/gtk-4.0" ]; then
-    ln -s /usr/share/themes/$THEME/gtk-4.0/* ~/.config/gtk-4.0/
+    ln -s /usr/share/themes/$THEME/gtk-4.0/* /home/sar/.config/gtk-4.0/
 fi
 
 # Update Flatpak theme at user level (no sudo needed)
