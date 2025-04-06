@@ -4,9 +4,10 @@ configuration {
   modes: "drun,run,window";
   font: "JetBrainsMono NF 14";
   drun-display-format: "{name}";
-  kb-cancel: "Escape";     
+  kb-cancel: "Escape";
   kb-row-down: "J,Down"; 
-  kb-row-up: "K,Up";    
+  kb-row-up: "K,Up";
+  terminal: "kitty";
 }
 
 * {
