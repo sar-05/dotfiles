@@ -36,6 +36,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 #Added for colors
 alias ls='ls --color'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+alias update='sudo pacman -Syu && yay -Syu && flatpak update'
 
 ##Plugins
 # FZF integration
@@ -50,3 +51,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 #Added for zsh-syntax-highlighting, this should go at the end
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#Starship prompt
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
