@@ -69,6 +69,8 @@ play = [
 rules = [
   #PDF
   { name = "application/pdf", use = "pdf"},
+  #DjVu
+  { name = "*.djvu", use = [ "zathura", "open", "reveal" ] },
   #Docx
   { name = "*.docx", use = [ "onlyoffice", "open" ] },
   # Folder
