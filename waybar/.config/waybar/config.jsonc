@@ -14,6 +14,7 @@
   "modules-right": [
     "tray",
     "idle_inhibitor",
+    "network",
     "backlight",
     "pulseaudio",
     "pulseaudio#microphone",
@@ -59,8 +60,9 @@
 	    "min-length": 3,
   },
   "network": {
-    "format": "󰖩 {signalStrength}%",
-    "format-disconnected": "󰖪 disconnected",
+    "format": "{icon} {signalStrength}%",
+    "format-icons": ["󰤯 ","󰤟","󰤢","󰤥","󰤨"],
+    "format-disconnected": "󰤭 disconnected",
     "tooltip": true,
     "tooltip-format": "{essid}",
     "on-click": "nm-connection-editor",
@@ -68,7 +70,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "tooltip": false,
-    "format-muted": " Muted",
+    "format-muted": "󰸈 Muted",
     "on-click": "pavucontrol",
     "format-icons": {
       "headphone": "",
@@ -88,7 +90,7 @@
     "format": "{format_source}",
     "tooltip": false,
     "format-source": "\uf130 {volume}%",
-    "format-source-muted": "\udb80\udf6d Muted",
+    "format-source-muted": "",
     "on-click": "pamixer --default-source -t",
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
