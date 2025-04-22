@@ -71,5 +71,12 @@ alias vim='nvim'
 alias update='sudo pacman -Syu && yay -Syu && flatpak update'
 
 # Shell integrations
+if type clipcat-menu >/dev/null 2>&1; then
+    alias clipedit=' clipcat-menu --finder=builtin edit'
+    alias clipdel=' clipcat-menu --finder=builtin remove'
+
+    bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
+    bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
+fi
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
