@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Attempt to clear clipcat
+if ! clipcatctl clear; then
+    notify-send "Clipcat Wipe Error" "Failed to clear clipcat"
+fi
+
+# Wait a moment to ensure processes are stopped
+sleep 0.5
+
+# Check if the clipcat directory exists before removing it
+if [ -d ~/.cache/clipcat ]; then
+    echo "Removing existing clipcat cache directory..."
+    if ! rm -rf ~/.cache/clipcat; then
+        notify-send "Clipcat Wipe Error" "Failed to remove clipcat directory"
+        exit 1
+    fi
+fi
+
+# Create the directory structure and empty files
+echo "Creating clipcat cache directory structure..."
+if ! mkdir -p ~/.cache/clipcat/clipcatd-history/images/; then
+    notify-send "Clipcat Wipe Error" "Failed to create clipcat directories"
+    exit 1
+fi
+
+touch ~/.cache/clipcat/clipcatd-history/clips
+touch ~/.cache/clipcat/clipcatd-history/header.json
+echo "Cache directory structure restored."
