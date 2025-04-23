@@ -73,6 +73,10 @@ rules = [
   { name = "*.djvu", use = [ "zathura", "open", "reveal" ] },
   #Docx
   { name = "*.docx", use = [ "onlyoffice", "open" ] },
+  #Pptx
+  { name = "*.pptx", use = [ "onlyoffice", "open" ] },
+  #Xlsx
+  { name = "*.xlsx", use = [ "onlyoffice", "open" ] },
   # Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 	# Text
