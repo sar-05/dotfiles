@@ -38,8 +38,11 @@
     }
   },
   "battery": {
-    "format": "{icon}  {capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "format": "{icon} {capacity}%",
+    "format-icons": {
+      "discharging": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+      "charging": ["󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋","󰂅"]
+    },
     "bat-compatibility": false
   },
   "backlight": {

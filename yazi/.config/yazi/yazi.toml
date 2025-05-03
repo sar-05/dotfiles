@@ -48,6 +48,9 @@ open = [
 onlyoffice = [
     { run = 'flatpak run org.onlyoffice.desktopeditors "$1"', orphan = true, for = "unix" },
 ]
+libreoffice = [
+    {run = 'libreoffice "$1"', orphan = true, for = "unix"}
+]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
 	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
@@ -72,11 +75,11 @@ rules = [
   #DjVu
   { name = "*.djvu", use = [ "zathura", "open", "reveal" ] },
   #Docx
-  { name = "*.docx", use = [ "onlyoffice", "open" ] },
+  { name = "*.docx", use = [ "libreoffice","onlyoffice", "open" ] },
   #Pptx
-  { name = "*.pptx", use = [ "onlyoffice", "open" ] },
+  { name = "*.pptx", use = [ "libreoffice","onlyoffice", "open" ] },
   #Xlsx
-  { name = "*.xlsx", use = [ "onlyoffice", "open" ] },
+  { name = "*.xlsx", use = [ "libreoffice","onlyoffice", "open" ] },
   # Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 	# Text
