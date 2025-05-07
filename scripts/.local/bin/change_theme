@@ -34,3 +34,5 @@ fi
 
 # Update Flatpak theme at user level (no sudo needed)
 flatpak override --user --env=GTK_THEME="$THEME"
+
+notify-send "Theme Changed" "$THEME"
