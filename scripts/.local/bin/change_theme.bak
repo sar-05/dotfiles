@@ -20,31 +20,19 @@ else
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 fi
 
+# At this point, THEME contains the opposite theme name
+# but no actual theme change has occurred
+
 # Clear existing GTK4 config
 rm -rf ~/.config/gtk-4.0
 mkdir -p ~/.config/gtk-4.0
 
 # Link the theme's GTK4 CSS files
 if [ -d "/usr/share/themes/$THEME/gtk-4.0" ]; then
-    ln -s /usr/share/themes/$THEME/gtk-4.0/* ~/.config/gtk-4.0/
+    ln -s /usr/share/themes/$THEME/gtk-4.0/* /home/sar/.config/gtk-4.0/
 fi
 
-# Make sure themes are in ~/.themes for Flatpak (use copy, not symlinks)
-mkdir -p ~/.themes
-# Check if we need to update the themes
-if [ ! -d "$HOME/.themes/$DARK_THEME" ] || [ "/usr/share/themes/$DARK_THEME" -nt "$HOME/.themes/$DARK_THEME" ]; then
-    rm -rf "$HOME/.themes/$DARK_THEME"
-    cp -r "/usr/share/themes/$DARK_THEME" "$HOME/.themes/"
-fi
-if [ ! -d "$HOME/.themes/$LIGHT_THEME" ] || [ "/usr/share/themes/$LIGHT_THEME" -nt "$HOME/.themes/$LIGHT_THEME" ]; then
-    rm -rf "$HOME/.themes/$LIGHT_THEME"
-    cp -r "/usr/share/themes/$LIGHT_THEME" "$HOME/.themes/"
-fi
-
-# Update Flatpak theme environment variable (safely)
+# Update Flatpak theme at user level (no sudo needed)
 flatpak override --user --env=GTK_THEME="$THEME"
-
-# This might work for some GTK applications
-dbus-send --session --dest=org.gtk.Settings --type=method_call /org/gtk/Settings org.gtk.Settings.ThemeChanged
 
 notify-send "Theme Changed" "$THEME"
