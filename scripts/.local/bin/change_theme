@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# Define theme names
+#Theme variables
+#Themes must be in ~/.themes/ AND /usr/share/themes/
 DARK_THEME='Gruvbox-Dark'
 LIGHT_THEME='Gruvbox-Light'
+#Icons must be in ~/.icons/
 DARK_ICON_THEME='Papirus-Dark'
 LIGHT_ICON_THEME='Papirus-Light'
+#Path to Wallpapers
+DARK_WALLPAPER="/home/sar/Pictures/Wallpapers/gruvbox_planet.png"
+LIGHT_WALLPAPER="/home/sar/Pictures/Wallpapers/gruvbox_koi_fish.png"
+#Automatic for one monitor
+MONITOR=$(hyprctl monitors -j | jq -r '.[0].name')
 
-# Get current theme (remove quotes from gsettings output)
+# Get current theme (pipe removes quotes from gsettings output)
 CURRENT_THEME=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d "'")
 
 # Determine the opposite theme without changing anything yet
@@ -14,6 +21,7 @@ if [ "$CURRENT_THEME" = "$LIGHT_THEME" ]; then
     # If current theme is light, set THEME variable to dark
     THEME="$DARK_THEME"
     ICON_THEME="$DARK_ICON_THEME"
+    WALLPAPER="$DARK_WALLPAPER"
     gsettings set org.gnome.desktop.interface gtk-theme "$THEME"
     gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME"
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
@@ -21,6 +29,7 @@ else
     # If current theme is anything else, set THEME variable to light
     THEME="$LIGHT_THEME"
     ICON_THEME="$LIGHT_ICON_THEME"
+    WALLPAPER="$LIGHT_WALLPAPER"
     gsettings set org.gnome.desktop.interface gtk-theme "$THEME"
     gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME"
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
@@ -30,14 +39,14 @@ fi
 rm -rf ~/.config/gtk-4.0
 mkdir -p ~/.config/gtk-4.0
 
-# Link the theme's GTK4 CSS files
+# Symlink the theme's GTK4 CSS files
 if [ -d "/usr/share/themes/$THEME/gtk-4.0" ]; then
     ln -s /usr/share/themes/$THEME/gtk-4.0/* ~/.config/gtk-4.0/
 fi
 
 # Make sure themes are in ~/.themes for Flatpak (use copy, not symlinks)
 mkdir -p ~/.themes
-# Check if we need to update the themes
+# Check if theme update is needed
 if [ ! -d "$HOME/.themes/$DARK_THEME" ] || [ "/usr/share/themes/$DARK_THEME" -nt "$HOME/.themes/$DARK_THEME" ]; then
     rm -rf "$HOME/.themes/$DARK_THEME"
     cp -r "/usr/share/themes/$DARK_THEME" "$HOME/.themes/"
@@ -47,10 +56,14 @@ if [ ! -d "$HOME/.themes/$LIGHT_THEME" ] || [ "/usr/share/themes/$LIGHT_THEME" -
     cp -r "/usr/share/themes/$LIGHT_THEME" "$HOME/.themes/"
 fi
 
-# Update Flatpak theme environment variable (safely)
+# Update Flatpak theme environment variable
 flatpak override --user --env=GTK_THEME="$THEME" --env=ICON_THEME="$ICON_THEME"
 
-# This might work for some GTK applications
+# Might switch some flatpaks theme without restarting
 dbus-send --session --dest=org.gtk.Settings --type=method_call /org/gtk/Settings org.gtk.Settings.ThemeChanged
 
+#Switch wallpaper
+hyprctl hyprpaper wallpaper "$MONITOR,$WALLPAPER"
+
+#Sends changed theme notification
 notify-send "Theme Changed" "$THEME"
