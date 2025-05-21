@@ -1,0 +1,110 @@
+#!/bin/bash
+
+#GTK Theme Variables
+dark_theme='Gruvbox-Dark'
+light_theme='Gruvbox-Light'
+current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d "'")
+
+#Icon Theme Variables
+dark_icons='Papirus-Dark'
+light_icons='Papirus-Light'
+current_icons=$(gsettings get org.gnome.desktop.interface icon-theme | tr -d "'")
+
+#Monitor Name
+monitor=$(hyprctl monitors -j | jq -r '.[0].name')
+
+#Wallpapers Paths
+dark_wallpaper="/home/sar/Pictures/Wallpapers/gruvbox_planet.png"
+light_wallpaper="/home/sar/Pictures/Wallpapers/gruvbox_sunflowers.png"
+current_wallpaper=$(hyprctl hyprpaper listactive | cut -d' ' -f3)
+
+if [ $# -ne 0 ]; then
+  while getopts "cld" flag; do
+    case "$flag" in
+      c)
+        gtk_theme="$current_theme"
+        icons="$current_icons"
+        wallpaper=$(cat ~/.config/hypr/hyprconf/wallpaper_path)
+        ;;
+      l)
+        gtk_theme="$light_theme"
+        icons="$light_icons"
+        wallpaper="$light_wallpaper"
+        ;;
+      d)
+        gtk_theme="$dark_theme"
+        icons="$dark_icons"
+        wallpaper="$dark_wallpaper"
+        ;;
+      ?)
+        echo "Invalid argument"
+        exit 1
+        ;;
+    esac
+  done
+else
+  # Toggle mode
+  if [ "$current_theme" = "$light_theme" ]; then
+    gtk_theme="$dark_theme"
+    icons="$dark_icons"
+    wallpaper="$dark_wallpaper"
+  else
+    gtk_theme="$light_theme"
+    icons="$light_icons"
+    wallpaper="$light_wallpaper"
+  fi
+fi
+
+# Validate theme exists
+if [ ! -d "/usr/share/themes/$gtk_theme" ]; then
+  echo "Theme $gtk_theme not found in /usr/share/themes/"
+  notify-send "Theme Error" "Theme $gtk_theme not found"
+  exit 1
+fi
+
+gtk_preference=$(echo $gtk_theme | cut -d'-' -f2 | tr '[:upper:]' '[:lower:]')
+
+# Apply GTK theme settings
+gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
+gsettings set org.gnome.desktop.interface icon-theme "$icons"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$gtk_preference"
+
+# Clear existing GTK4 config
+rm -rf ~/.config/gtk-4.0
+mkdir -p ~/.config/gtk-4.0
+
+# Symlink the theme's GTK4 CSS files
+if [ -d "/usr/share/themes/$gtk_theme/gtk-4.0" ]; then
+  ln -s /usr/share/themes/$gtk_theme/gtk-4.0/* ~/.config/gtk-4.0/
+fi
+
+# Make sure themes are in ~/.themes for Flatpak
+mkdir -p ~/.themes
+# Check if theme update is needed
+if [ ! -d "$HOME/.themes/$dark_theme" ] || [ "/usr/share/themes/$dark_theme" -nt "$HOME/.themes/$dark_theme" ]; then
+  rm -rf "$HOME/.themes/$dark_theme"
+  cp -r "/usr/share/themes/$dark_theme" "$HOME/.themes/"
+fi
+if [ ! -d "$HOME/.themes/$light_theme" ] || [ "/usr/share/themes/$light_theme" -nt "$HOME/.themes/$light_theme" ]; then
+  rm -rf "$HOME/.themes/$light_theme"
+  cp -r "/usr/share/themes/$light_theme" "$HOME/.themes/"
+fi
+
+# Update Flatpak theme environment variable
+flatpak override --user --env=GTK_THEME="$gtk_theme" --env=ICON_THEME="$icons"
+
+# Signal GTK to update themes immediately
+dbus-send --session --dest=org.gtk.Settings --type=method_call /org/gtk/Settings org.gtk.Settings.ThemeChanged
+
+# Switch wallpaper
+hyprctl hyprpaper wallpaper "$monitor,$wallpaper"
+
+#Override hyprpaper.conf file
+cat > ~/.config/hypr/hyprpaper.conf << EOF
+preload = $light_wallpaper
+preload = $dark_wallpaper
+wallpaper = $monitor,$wallpaper
+EOF
+
+# Send notification
+notify-send "Theme Changed" "$gtk_theme"

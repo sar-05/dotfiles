@@ -1,3 +1,5 @@
+@import "themes/current.css";  /* Default theme, will be symlinked */
+
 * {
   border: none;
   border-radius: 0;
@@ -9,22 +11,21 @@
 
 window#waybar {
   background: rgba(21, 18, 27, 0);
-  color: #ddc7a1;
+  color: @text_color;
 }
 
 tooltip {}
 
 #workspaces button {
-  color: #dcc7a1;
-
+  color: @text_color;
 }
 
 #workspaces button.active {
-  color: #e78a4e;
+  color: @active_color;
 }
 
 #workspaces button.focused {
-  color: #9ccfd8;
+  color: @active_color;
 }
 
 #workspaces button.urgent {}

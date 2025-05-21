@@ -49,7 +49,7 @@ onlyoffice = [
     { run = 'flatpak run org.onlyoffice.desktopeditors "$1"', orphan = true, for = "unix" },
 ]
 libreoffice = [
-    {run = 'libreoffice "$1"', orphan = true, for = "unix"}
+    {run = 'flatpak run org.libreoffice.LibreOffice "$1"', orphan = true, for = "unix"}
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },

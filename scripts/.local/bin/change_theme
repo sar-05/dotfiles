@@ -9,7 +9,7 @@ DARK_ICON_THEME='Papirus-Dark'
 LIGHT_ICON_THEME='Papirus-Light'
 #Path to Wallpapers
 DARK_WALLPAPER="/home/sar/Pictures/Wallpapers/gruvbox_planet.png"
-LIGHT_WALLPAPER="/home/sar/Pictures/Wallpapers/gruvbox_koi_fish.png"
+LIGHT_WALLPAPER="/home/sar/Pictures/Wallpapers/gruvbox_sunflowers.png"
 #Automatic for one monitor
 MONITOR=$(hyprctl monitors -j | jq -r '.[0].name')
 
@@ -17,7 +17,8 @@ MONITOR=$(hyprctl monitors -j | jq -r '.[0].name')
 CURRENT_THEME=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d "'")
 
 # Determine the opposite theme without changing anything yet
-if [ "$CURRENT_THEME" = "$LIGHT_THEME" ]; then
+if [ "$CURRENT_THEME" = "$LIGHT_THEME" ]; 
+then
     # If current theme is light, set THEME variable to dark
     THEME="$DARK_THEME"
     ICON_THEME="$DARK_ICON_THEME"
@@ -40,18 +41,22 @@ rm -rf ~/.config/gtk-4.0
 mkdir -p ~/.config/gtk-4.0
 
 # Symlink the theme's GTK4 CSS files
-if [ -d "/usr/share/themes/$THEME/gtk-4.0" ]; then
+if [ -d "/usr/share/themes/$THEME/gtk-4.0" ]; 
+then
     ln -s /usr/share/themes/$THEME/gtk-4.0/* ~/.config/gtk-4.0/
 fi
 
 # Make sure themes are in ~/.themes for Flatpak (use copy, not symlinks)
 mkdir -p ~/.themes
 # Check if theme update is needed
-if [ ! -d "$HOME/.themes/$DARK_THEME" ] || [ "/usr/share/themes/$DARK_THEME" -nt "$HOME/.themes/$DARK_THEME" ]; then
+if [ ! -d "$HOME/.themes/$DARK_THEME" ] || [ "/usr/share/themes/$DARK_THEME" -nt "$HOME/.themes/$DARK_THEME" ]; 
+then
     rm -rf "$HOME/.themes/$DARK_THEME"
     cp -r "/usr/share/themes/$DARK_THEME" "$HOME/.themes/"
 fi
-if [ ! -d "$HOME/.themes/$LIGHT_THEME" ] || [ "/usr/share/themes/$LIGHT_THEME" -nt "$HOME/.themes/$LIGHT_THEME" ]; then
+
+if [ ! -d "$HOME/.themes/$LIGHT_THEME" ] || [ "/usr/share/themes/$LIGHT_THEME" -nt "$HOME/.themes/$LIGHT_THEME" ]; 
+then
     rm -rf "$HOME/.themes/$LIGHT_THEME"
     cp -r "/usr/share/themes/$LIGHT_THEME" "$HOME/.themes/"
 fi
@@ -61,6 +66,17 @@ flatpak override --user --env=GTK_THEME="$THEME" --env=ICON_THEME="$ICON_THEME"
 
 # Might switch some flatpaks theme without restarting
 dbus-send --session --dest=org.gtk.Settings --type=method_call /org/gtk/Settings org.gtk.Settings.ThemeChanged
+
+# Update waybar colors
+if [ "$THEME" = "$DARK_THEME" ]; 
+then
+    ln -sf ~/.config/waybar/themes/dark.css ~/.config/waybar/themes/current.css
+else
+    ln -sf ~/.config/waybar/themes/light.css ~/.config/waybar/themes/current.css
+fi
+
+# Restart waybar to apply changes
+~/.local/bin/restart-waybar
 
 #Switch wallpaper
 hyprctl hyprpaper wallpaper "$MONITOR,$WALLPAPER"
