@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=C* Music Player
+Type=Application
+Comment=A small, fast and powerful console music player
+Comment[de]=Ein kleiner, schneller und mächtiger Musikspieler
+Terminal=true
+Exec=cmus
+Categories=ConsoleOnly;Audio;Player;
+GenericName=Music player
+GenericName[de]=Musikspieler
+Keywords=cmus;audio;player;

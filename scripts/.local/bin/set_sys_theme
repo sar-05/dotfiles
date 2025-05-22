@@ -106,5 +106,8 @@ preload = $dark_wallpaper
 wallpaper = $monitor,$wallpaper
 EOF
 
+#Override hyprlock wallpaper line
+sed -i "s|path = .*png|path = $wallpaper|" ~/.config/hypr/hyprlock.conf
+
 # Send notification
 notify-send "Theme Changed" "$gtk_theme"

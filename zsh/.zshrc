@@ -69,6 +69,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias update='sudo pacman -Syu && yay -Syu && flatpak update'
+alias ff='custom_fastfetch'
 
 #Custom clipcat integration
 # Function to select from clipcat and insert at cursor
