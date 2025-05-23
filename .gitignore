@@ -2,3 +2,49 @@ tmux/.config/tmux/plugins/
 cmus/.config/cmus/cache
 cmus/.config/cmus/search-history
 yazi/.config/yazi/flavors
+
+# Cache directories and files
+**/*cache*/
+**/*.cache
+**/cache/
+**/.cache/
+
+# History files
+**/*history*
+**/*_history
+**/.history
+
+# Lock and state files
+**/*.lock
+**/*.state
+**/*.pid
+**/state/
+
+# Log files
+**/*.log
+**/logs/
+
+# Temporary files
+**/*.tmp
+**/*.temp
+**/tmp/
+
+# Plugin and package directories (auto-downloaded)
+**/plugins/
+**/node_modules/
+**/.npm/
+
+# Neovim specific
+# nvim/.config/nvim/plugin/
+nvim/.config/nvim/.netrw*
+nvim/.config/nvim/undodir/
+nvim/.config/nvim/swap/
+nvim/.config/nvim/backup/
+
+# Zsh specific
+**/.zcompdump*
+**/.zsh_sessions/
+
+# Application-specific state
+clipcat/.config/clipcat/state/
+**/.local/state/

@@ -59,15 +59,78 @@ return {
      vim.notify("LSP " .. client.name .. " started for buffer " .. bufnr, vim.log.levels.INFO)
     end
 
-    -- Call setup on each LSP server
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
+    -- -- Call setup on each LSP server
+    -- require('mason-lspconfig').setup_handlers({
+    --   function(server_name)
+    --     lspconfig[server_name].setup({
+    --       on_attach = lsp_attach,
+    --       capabilities = lsp_capabilities,
+    --     })
+    --   end
+    -- })
+
+    -- Replace the problematic section with this approach
+    local mason_lspconfig = require('mason-lspconfig')
+    local lspconfig = require('lspconfig')
+    
+    -- Get the list of servers that mason-lspconfig knows about
+    local installed_servers = mason_lspconfig.get_installed_servers()
+    
+    -- Set up each installed server
+    for _, server_name in ipairs(installed_servers) do
+      -- Special handling for specific servers can go here
+      if server_name == "lua_ls" then
+        lspconfig[server_name].setup({
+          on_attach = lsp_attach,
+          capabilities = lsp_capabilities,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = {'vim'},
+              },
+            },
+          },
+        })
+      elseif server_name == "pyright" then
+        -- Your existing pyright configuration
+        lspconfig[server_name].setup({
+          filetypes = { "python" },
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true
+              },
+            },
+          },
+          on_attach = lsp_attach,
+          capabilities = lsp_capabilities,
+        })
+      else
+        -- Default configuration for all other servers
         lspconfig[server_name].setup({
           on_attach = lsp_attach,
           capabilities = lsp_capabilities,
         })
       end
-    })
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     -- Lua LSP settings
     lspconfig.lua_ls.setup {
