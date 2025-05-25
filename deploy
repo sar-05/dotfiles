@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dirs=(*)
+exclude=("bashrc" "zsh" "qtile")
+
+for dir in "${dirs[@]}"; do
+    if [[ ! " ${exclude[*]} " =~ " ${dir} " ]]; then
+        stow "$dir"
+    fi
+done

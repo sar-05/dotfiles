@@ -1,0 +1,125 @@
+# =============================================================================
+# Dotfiles Repository .gitignore
+# =============================================================================
+# This file prevents common categories of unwanted files from being tracked.
+# The sections below are organized by type of content to ignore.
+
+# -----------------------------------------------------------------------------
+# Cache and Temporary Files
+# -----------------------------------------------------------------------------
+# These files are generated during normal application usage and should never
+# be tracked as they're machine-specific and constantly changing.
+
+**/*cache*/
+**/*.cache
+**/cache/
+**/.cache/
+**/*.tmp
+**/*.temp
+**/tmp/
+**/.tmp/
+
+# -----------------------------------------------------------------------------
+# State and Runtime Files
+# -----------------------------------------------------------------------------
+# These files store application state, process IDs, and other runtime data
+# that should not be shared between machines.
+
+**/*.lock
+!nvim/.config/nvim/lazy-lock.json
+**/*.state
+**/*.pid
+**/state/
+**/.local/state/
+**/run/
+**/*.sock
+
+# -----------------------------------------------------------------------------
+# History and Log Files
+# -----------------------------------------------------------------------------
+# Command history and log files contain personal usage patterns and
+# potentially sensitive information.
+
+**/*history*
+**/*_history
+**/.history
+**/*.log
+**/logs/
+**/.zcompdump*
+**/.zsh_sessions/
+
+# -----------------------------------------------------------------------------
+# Plugin and Package Directories
+# -----------------------------------------------------------------------------
+# These directories are populated automatically by package managers
+# and should be recreated through your configuration, not tracked directly.
+
+# **/plugins/ #overly broad, conflicts with nvim plugins sub-directory
+**/node_modules/
+**/.npm/
+**/site-packages/
+**/vendor/
+
+# -----------------------------------------------------------------------------
+# Application-Specific Excludes
+# -----------------------------------------------------------------------------
+# Files specific to applications that generate a lot of unnecessary content.
+
+# Neovim
+nvim/.config/nvim/plugin/
+nvim/.config/nvim/.netrw*
+nvim/.config/nvim/undodir/
+nvim/.config/nvim/swap/
+nvim/.config/nvim/backup/
+
+# Tmux (plugins are managed automatically)
+tmux/.config/tmux/plugins/
+
+# Yazi (flavors and plugins are downloaded automatically)
+yazi/.config/yazi/flavors/
+yazi/.config/yazi/plugins/
+
+# Hyprland (These files are updated constantly by scripts and should not be synced)
+hypr/.config/hypr/hyprpaper.conf
+hypr/.config/hypr/hyprlock.conf
+
+# Waybar current theme symlink (points to different themes)
+waybar/.config/waybar/themes/current.css
+
+# Additional application-specific ignores that might be needed:
+# MPD (if you don't want to sync database and state)
+# mpd/.config/mpd/database
+# mpd/.config/mpd/state
+# mpd/.config/mpd/sticker.sql
+
+# Clipcat (runtime state) - if you add it later
+# clipcat/.config/clipcat/state/
+
+# -----------------------------------------------------------------------------
+# System and Editor Files
+# -----------------------------------------------------------------------------
+# Files created by operating systems and editors that don't belong in the repo.
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+.*.swp
+.*.swo
+
+# -----------------------------------------------------------------------------
+# Personal and Sensitive Data
+# -----------------------------------------------------------------------------
+# Patterns that might catch files containing sensitive information.
+
+**/secrets/
+**/private/
+**/*secret*
+**/*password*
+**/*token*
+**/.env
+**/.env.local

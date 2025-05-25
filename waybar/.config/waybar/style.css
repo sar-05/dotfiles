@@ -1,0 +1,69 @@
+@import "themes/current.css";  /* Default theme, will be symlinked */
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: JetBrainsMono NF, monospace;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(21, 18, 27, 0);
+  color: @text_color;
+}
+
+tooltip {}
+
+#workspaces button {
+  color: @text_color;
+}
+
+#workspaces button.active {
+  color: @active_color;
+}
+
+#workspaces button.focused {
+  color: @active_color;
+}
+
+#workspaces button.urgent {}
+
+#workspaces button:hover {}
+
+#custom-language,
+#custom-updates,
+#custom-caffeine,
+#custom-weather,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#tray,
+#backlight {
+  padding: 0 8px;
+
+}
+
+#tray {}
+
+#workspaces {}
+
+#window {}
+
+#clock {
+  padding: 0 8px;
+}
+
+#network {
+  padding: 0 8px;
+}
+
+#pulseaudio {}
+
+#pulseaudio.microphone {}
+
+#battery {}

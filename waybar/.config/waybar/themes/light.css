@@ -1,0 +1,4 @@
+@define-color text_color #ddc7a1;     /* Light text for dark theme */
+@define-color active_color #e78a4e;   /* Your active workspace color */
+/* @define-color text_color #3c3836;     /1* Dark text for light theme *1/ */
+/* @define-color active_color #af3a03;   /1* Darker active color for light theme *1/ */
