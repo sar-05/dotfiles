@@ -33,6 +33,9 @@ export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 export GOPATH="$XDG_CONFIG_HOME/go"
 
+# Disabled files
+export LESSHISTFILE=-
+
 # Update PATH (append local bin if not already present)
 case ":$PATH:" in
     *":$HOME/.local/bin:"*) ;;
