@@ -38,36 +38,22 @@ return {
       }
     })
 
-    local lspconfig = require('lspconfig')
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(client, bufnr)
       -- Create your keybindings here...
       -- Keybindings for LSP functionality
       local opts = { noremap=true, silent=true, buffer=bufnr }
-  
       -- Navigation
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  
       -- Code actions and diagnostics
      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  
      -- Print notification when LSP attaches
      vim.notify("LSP " .. client.name .. " started for buffer " .. bufnr, vim.log.levels.INFO)
     end
-
-    -- -- Call setup on each LSP server
-    -- require('mason-lspconfig').setup_handlers({
-    --   function(server_name)
-    --     lspconfig[server_name].setup({
-    --       on_attach = lsp_attach,
-    --       capabilities = lsp_capabilities,
-    --     })
-    --   end
-    -- })
 
     -- Replace the problematic section with this approach
     local mason_lspconfig = require('mason-lspconfig')
@@ -115,22 +101,6 @@ return {
         })
       end
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     -- Lua LSP settings
     lspconfig.lua_ls.setup {
@@ -188,7 +158,6 @@ lspconfig.texlab.setup {
   on_attach = function(client, bufnr)
     -- Call the existing lsp_attach function first
     lsp_attach(client, bufnr)
-    
     -- Apply TeX-specific keymappings here if needed
     local opts = { noremap=true, silent=true, buffer=bufnr }
     -- For example:
@@ -207,4 +176,3 @@ lspconfig.texlab.setup {
 
   end
 }
-
