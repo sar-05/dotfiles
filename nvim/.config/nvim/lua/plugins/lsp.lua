@@ -19,8 +19,6 @@ return {
           'texlab'
         }
       })
-      -- Get the default capabilities from blink.cmp
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
       local servers = {
         lua_ls = {},
         pyright = {
@@ -66,10 +64,8 @@ return {
       }
       -- Configure and enable each server
       for server, config in pairs(servers) do
-        -- Merge the blink.cmp capabilities with server config
-        config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
-        -- Configure the server with the new API
-        vim.lsp.config[server] = config
+        -- Configure the server with the new default Neovim API
+        vim.lsp.config(server, config)
         -- Enable the server
         vim.lsp.enable(server)
       end
