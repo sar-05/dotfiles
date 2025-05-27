@@ -28,9 +28,6 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
 # Create cache directory if it doesn't exist
@@ -75,34 +72,7 @@ alias update='sudo pacman -Syu && yay -Syu && flatpak update'
 alias ff='custom_fastfetch'
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
-
-#Custom clipcat integration
-# Function to select from clipcat and insert at cursor
-clipboard_insert_at_cursor() {
-  # Run clipcat-menu to select an item (puts it on clipboard)
-  clipcat-menu --finder=builtin insert
-  
-  # Store current cursor position
-  local cursor_pos=$CURSOR
-  
-  # For Vi mode compatibility - if in command mode, enter insert mode first
-  if [[ $KEYMAP == vicmd ]]; then
-    zle vi-insert
-  fi
-  
-  # Simulate paste at cursor position
-  LBUFFER+="$(xclip -selection clipboard -o 2>/dev/null || wl-paste 2>/dev/null || pbpaste 2>/dev/null)"
-  
-  # Redraw the prompt
-  zle reset-prompt
-}
-
-# Register as a ZLE widget
-zle -N clipboard_insert_at_cursor
-
-# Bind in both Vi modes
-bindkey -M vicmd '^\' clipboard_insert_at_cursor
-bindkey -M viins '^\' clipboard_insert_at_cursor
+alias cat='bat'
 
 # Shell integrations
 eval "$(fzf --zsh)"
