@@ -25,17 +25,17 @@ vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
 -- Tab management
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>") -- open a new tab
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close a tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>") -- next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>") -- previous tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "new tab" }) -- 
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "close tab" }) -- 
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "next tab" }) -- 
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "previous tab" }) -- 
 
 -- Diff keymaps
-vim.keymap.set("n", "<leader>cc", ":diffput<CR>") -- put diff from current to other during diff
-vim.keymap.set("n", "<leader>cj", ":diffget 1<CR>") -- get diff from left (local) during merge
-vim.keymap.set("n", "<leader>ck", ":diffget 3<CR>") -- get diff from right (remote) during merge
-vim.keymap.set("n", "<leader>cn", "]c") -- next diff hunk
-vim.keymap.set("n", "<leader>cp", "[c") -- previous diff hunk
+vim.keymap.set("n", "<leader>dc", ":diffput<CR>") -- put diff from current to other during diff
+vim.keymap.set("n", "<leader>dj", ":diffget 1<CR>") -- get diff from left (local) during merge
+vim.keymap.set("n", "<leader>dk", ":diffget 3<CR>") -- get diff from right (remote) during merge
+vim.keymap.set("n", "<leader>dn", "]c") -- next diff hunk
+vim.keymap.set("n", "<leader>dp", "[c") -- previous diff hunk
 
 -- Quickfix keymaps
 vim.keymap.set("n", "<leader>qo", ":copen<CR>") -- open quickfix list
@@ -45,39 +45,32 @@ vim.keymap.set("n", "<leader>qp", ":cprev<CR>") -- jump to prev quickfix list it
 vim.keymap.set("n", "<leader>ql", ":clast<CR>") -- jump to last quickfix list item
 vim.keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
 
-
--- Nvim-tree
--- keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>") -- toggle file explorer
--- keymap.set("n", "<leader>er", ":NvimTreeFocus<CR>") -- toggle focus to file explorer
--- keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
-
 -- Yazi-nvim
 vim.keymap.set("n", "<leader>-", ":Yazi<CR>") --Opens Yazi at the current file
 vim.keymap.set("n", "<leader>-", ":Yazi cwd<CR>") --Opens Yazi at the current working directory 
 vim.keymap.set("n", "<leader>-", ":Yazi toggle<CR>") --Opens the last Yazi session 
 
 -- Telescope
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {}) -- fuzzy find files in project
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {}) -- grep file contents in project
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {}) -- fuzzy find open buffers
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {}) -- fuzzy find help tags
-vim.keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {}) -- fuzzy find in current file buffer
-vim.keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {}) -- fuzzy find LSP/class symbols
-vim.keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {}) -- fuzzy find LSP/incoming calls
--- keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({default_text=":method:"}) end) -- fuzzy find methods in current class
-vim.keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({symbols={'function', 'method'}}) end) -- fuzzy find methods in current class
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Find files" }) -- fuzzy find files in project
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {desc = "Find contents"}) -- grep file contents in project
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {desc = "Find buffer"}) -- fuzzy find open buffers
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {desc = "Find tags"}) -- fuzzy find help tags
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {desc = "Find in buffer"}) -- fuzzy find in current file buffer
+vim.keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {desc = "Find in LSP/class symbols"}) -- fuzzy find LSP/class symbols
+vim.keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {desc = "Find LSP/incoming calls"}) -- fuzzy find LSP/incoming calls
+vim.keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({symbols={'function', 'method'}}) end, {desc = "Find methods"}) -- fuzzy find methods in current class
 vim.keymap.set('n', '<leader>ft', function() -- grep file contents in current nvim-tree node
   local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
   if not success or not node then return end;
   require('telescope.builtin').live_grep({search_dirs = {node.absolute_path}})
-end)
+end, {desc = "Find in nvim-tree node"})
 
 -- Git-blame
-vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- toggle git blame
+vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>", { desc = "Toggle git blame" }) -- 
 
 -- Harpoon
-vim.keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
-vim.keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)
+vim.keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, {desc = "Mark file"})
+vim.keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, {desc = "Harpoon UI"})
 vim.keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
 vim.keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
 vim.keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
@@ -88,9 +81,8 @@ vim.keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) e
 vim.keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end)
 vim.keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end)
 
--- LSP
-
--- LSP
+-- LSP 
+-- Deprecated syntax
 -- keymap.set('n', '<leader>gg', '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 -- keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
@@ -120,20 +112,19 @@ vim.api.nvim_create_autocmd(
 			-- Buffer local mappings.
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
 			local opts = { buffer = ev.buf }
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-			vim.keymap.set("n", "<leader><space>", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-			vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<leader>gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
-      vim.keymap.set('n', '<leader>gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-      vim.keymap.set('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+      vim.keymap.set('n', '<leader>gg', vim.lsp.buf.hover, opts)
+      vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
+      vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+      vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
+      vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+      vim.keymap.set('n', '<leader>gs', vim.lsp.buf.signature_help, opts)
+      vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
+      vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, opts)
+      vim.keymap.set('n', '<leader>tr', vim.lsp.buf.document_symbol, opts)
 			vim.keymap.set("n", "<leader>f", function()
 				vim.lsp.buf.format({ async = true })
 			end, opts)
-
 			-- Open the diagnostic under the cursor in a float window
 			vim.keymap.set("n", "<leader>d", function()
 				vim.diagnostic.open_float({
