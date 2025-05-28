@@ -112,21 +112,21 @@ vim.api.nvim_create_autocmd(
 			-- Buffer local mappings.
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
 			local opts = { buffer = ev.buf }
-      vim.keymap.set('n', '<leader>gg', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
-      vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<leader>gs', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, opts)
-      vim.keymap.set('n', '<leader>tr', vim.lsp.buf.document_symbol, opts)
-			vim.keymap.set("n", "<leader>f", function()
+      vim.keymap.set('n', '<leader>cg', vim.lsp.buf.hover, opts)
+      vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', '<leader>cD', vim.lsp.buf.declaration, opts)
+      vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, opts)
+      vim.keymap.set('n', '<leader>ct', vim.lsp.buf.type_definition, opts)
+      vim.keymap.set('n', '<leader>cr', vim.lsp.buf.references, opts)
+      vim.keymap.set('n', '<leader>cs', vim.lsp.buf.signature_help, opts)
+      vim.keymap.set('n', '<leader>cR', vim.lsp.buf.rename, opts)
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+      vim.keymap.set('n', '<leader>cS', vim.lsp.buf.document_symbol, opts)
+			vim.keymap.set("n", "<leader>cf", function()
 				vim.lsp.buf.format({ async = true })
 			end, opts)
 			-- Open the diagnostic under the cursor in a float window
-			vim.keymap.set("n", "<leader>d", function()
+			vim.keymap.set("n", "<leader>cT", function()
 				vim.diagnostic.open_float({
 					border = "rounded",
 				})
