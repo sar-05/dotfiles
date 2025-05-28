@@ -1,4 +1,4 @@
-return{
+return {
   "folke/which-key.nvim",
   dependencies = {
     { 'echasnovski/mini.icons', version = '*' }
@@ -10,15 +10,15 @@ return{
     spec = {
       {
         mode = { "n", "v" },
-        { "<leader><tab>", group = "tabs" },
+        { "<leader>t", group = "tabs" },
         { "<leader>c", group = "code" },
         { "<leader>d", group = "debug" },
-        { "<leader>dp", group = "profiler" },
+        { "<leader>dp>", group = "profiler" },
         { "<leader>f", group = "file/find" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "hunks" },
         { "<leader>q", group = "quit/session" },
-        { "<leader>s", group = "search" },
+        { "<leader>s", group = "split" },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
         { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
         { "[", group = "prev" },

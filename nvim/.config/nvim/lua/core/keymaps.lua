@@ -8,14 +8,15 @@ vim.keymap.set("n", "<leader>ww", ":w<CR>") -- save
 vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
 
 -- Split window management
-vim.keymap.set("n", "<leader>%", "<C-w>v") -- split window vertically
-vim.keymap.set("n", '<leader>"', "<C-w>s") -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width
-vim.keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
-vim.keymap.set("n", "<leader>sj", "<C-w>-") -- make split window height shorter
-vim.keymap.set("n", "<leader>sk", "<C-w>+") -- make split windows height taller
-vim.keymap.set("n", "<leader>sl", "<C-w>>5") -- make split windows width bigger 
-vim.keymap.set("n", "<leader>sh", "<C-w><5") -- make split windows width smaller
+vim.keymap.set("n", "<leader>%", "<C-w>v", { desc = "split vertically" }) -- 
+vim.keymap.set("n", '<leader>"', "<C-w>s", { desc = "split horizontally" }) -- 
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "make splits equal" }) -- 
+vim.keymap.set("n", "<leader>sx", ":close<CR>", { desc = "close split window" }) -- 
+vim.keymap.set("n", "<M-j>", "<C-w>-", { desc = "make split height shorter" }) -- 
+vim.keymap.set("n", "<M-k>", "<C-w>+", { desc = "make split height taller" }) -- 
+vim.keymap.set("n", "<M-l>", "<C-w>>5", { desc = "make split wider" }) -- 
+vim.keymap.set("n", "<M-h>", "<C-w><5", { desc = "make split skinnier" }) -- 
+vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "toggle maximize" }) -- Vim-maximizer
 
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
@@ -44,8 +45,6 @@ vim.keymap.set("n", "<leader>qp", ":cprev<CR>") -- jump to prev quickfix list it
 vim.keymap.set("n", "<leader>ql", ":clast<CR>") -- jump to last quickfix list item
 vim.keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
 
--- Vim-maximizer
-vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle maximize tab
 
 -- Nvim-tree
 -- keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>") -- toggle file explorer
