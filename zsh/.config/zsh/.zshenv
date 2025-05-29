@@ -17,7 +17,6 @@ export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
 # npm configuration (requires creating ~/.npmrc file with XDG paths)
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm"
 
 # tmux configuration (requires modifying tmux.conf)
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
