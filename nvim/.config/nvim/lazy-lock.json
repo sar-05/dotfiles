@@ -1,5 +1,4 @@
 {
-  "bigfile.nvim": { "branch": "main", "commit": "33eb067e3d7029ac77e081cfe7c45361887a311a" },
   "blink.cmp": { "branch": "main", "commit": "022521a8910a5543b0251b21c9e1a1e989745796" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "git-blame.nvim": { "branch": "master", "commit": "8503b199edf9a666fe7b1a989cf14e3c26b2eb03" },
