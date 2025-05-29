@@ -2,9 +2,9 @@
 vim.g.mapleader = " "
 
 -- General keymaps
-vim.keymap.set("n", "<leader>wq", ":wq<CR>") -- save and quit
-vim.keymap.set("n", "<leader>qq", ":q!<CR>") -- quit without saving
-vim.keymap.set("n", "<leader>ww", ":w<CR>") -- save
+vim.keymap.set("n", "<leader>W", ":wq<CR>", { desc = "Save and quit" }) -- Changed from wq to avoid conflict
+vim.keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Quit without saving" }) -- quit without saving
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" }) -- Changed from ww to avoid Vimwiki conflict
 vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>", { desc = "Open with system app" }) -- open URL under cursor
 
 -- Split window management
@@ -45,10 +45,8 @@ vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { desc = "jump to prev item" }) 
 vim.keymap.set("n", "<leader>ql", ":clast<CR>", { desc = "jump to last item" }) -- 
 vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { desc = "close quickfix" }) -- 
 
--- Yazi-nvim
-vim.keymap.set("n", "<leader>-", ":Yazi<CR>") --Opens Yazi at the current file
-vim.keymap.set("n", "<leader>-", ":Yazi cwd<CR>") --Opens Yazi at the current working directory 
-vim.keymap.set("n", "<leader>-", ":Yazi toggle<CR>") --Opens the last Yazi session 
+-- Yazi-nvim (Fixed duplication - kept only one)
+vim.keymap.set("n", "<leader>-", "<cmd>Yazi<cr>", { desc = "Open Yazi file manager" })
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Find files" }) -- fuzzy find files in project
@@ -81,13 +79,25 @@ vim.keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) e
 vim.keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end, { desc = "Go to file 8" })
 vim.keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end, { desc = "Go to file 9" })
 
--- Vimwiki
+-- Vimwiki (Now these work without conflict since we changed save keymaps)
 vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex')
 vim.keymap.set('n', '<leader>wt', '<Plug>VimwikiTabIndex')
 vim.keymap.set('n', '<leader>ws', '<Plug>VimwikiUISelect')
 vim.keymap.set('n', '<leader>wi', '<Plug>VimwikiDiaryIndex')
 vim.keymap.set('n', '<leader>w<leader>w', '<Plug>VimwikiMakeDiaryNote')
 vim.keymap.set('n', '<leader>w<leader>t', '<Plug>VimwikiTabMakeDiaryNote')
+
+-- LSP completion (leveraging built-in LSP completion)
+vim.keymap.set('i', '<C-Space>', function()
+  if vim.bo.omnifunc == 'v:lua.vim.lsp.omnifunc' then
+    return '<C-X><C-O>'
+  else
+    return '<C-Space>'
+  end
+end, { expr = true, desc = "Trigger completion" })
+
+-- Note: Built-in commenting with 'gc' operator is available since Neovim 0.10
+-- You can remove vim-commentary plugin if you want to use the built-in version
 
 --  Use LspAttach autocommand to only map the following keys after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd(
@@ -101,33 +111,23 @@ vim.api.nvim_create_autocmd(
 			if client then
 				vim.notify("LSP [" .. client.name .. "] attached", vim.log.levels.INFO)
 			end
-			-- Buffer local mappings, `:help vim.lsp.*` for docs on the functions below 
+			-- Buffer local mappings for LSP functions that DON'T have defaults
 			local function map(mode, lhs, rhs, desc)
         vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
       end
-      -- LSP keymaps with descriptions
-      map('n', '<leader>cg', function ()
-        vim.lsp.buf.hover({
-          border = "rounded"
-        })
-      end, "Show hover information")
-      map("n", "<leader>cf", function()
+      -- Keep only LSP keymaps that don't conflict with defaults
+      -- Removed: <leader>cg (use 'K'), <leader>cr (use 'grr'), <leader>cR (use 'grn'), 
+      --          <leader>ca (use 'gra'), <leader>ci (use 'gri'), <leader>cS (use 'gO'),
+      --          <leader>cs (use '<C-S>')
+      map('n', 'gd', vim.lsp.buf.definition, "Go to definition")
+      map('n', 'gD', vim.lsp.buf.declaration, "Go to declaration")
+      map('n', 'gt', vim.lsp.buf.type_definition, "Go to type definition")
+      map('n', '<leader>cf', function()
         vim.lsp.buf.format({ async = true })
-			end, "Format document")
-			map("n", "<leader>cd", function()
-				vim.diagnostic.open_float({
-					border = "rounded",
-				})
-			end, "Open diagnostics")
-      map('n', '<leader>cD', vim.lsp.buf.definition, "Go to definition")
-      map('n', '<leader>cT', vim.lsp.buf.declaration, "Go to declaration")
-      map('n', '<leader>ci', vim.lsp.buf.implementation, "Go to implementation")
-      map('n', '<leader>ct', vim.lsp.buf.type_definition, "Go to type definition")
-      map('n', '<leader>cr', vim.lsp.buf.references, "Show references")
-      map('n', '<leader>cs', vim.lsp.buf.signature_help, "Show signature help")
-      map('n', '<leader>cR', vim.lsp.buf.rename, "Rename symbol")
-      map('n', '<leader>ca', vim.lsp.buf.code_action, "Code actions")
-      map('n', '<leader>cS', vim.lsp.buf.document_symbol, "Document symbols")
+      end, "Format document")
+      map('n', '<leader>cd', function()
+        vim.diagnostic.open_float({ border = "rounded" })
+      end, "Open diagnostics")
 		end,
 	}
 )
