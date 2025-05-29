@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>wq", ":wq<CR>") -- save and quit
 vim.keymap.set("n", "<leader>qq", ":q!<CR>") -- quit without saving
 vim.keymap.set("n", "<leader>ww", ":w<CR>") -- save
-vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
+vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>", { desc = "Open with system app" }) -- open URL under cursor
 
 -- Split window management
 vim.keymap.set("n", "<leader>%", "<C-w>v", { desc = "split vertically" }) -- 
