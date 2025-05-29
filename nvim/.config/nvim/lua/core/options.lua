@@ -1,53 +1,52 @@
-local opt = vim.opt
-
 -- Session Management
-opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Line Numbers
-opt.relativenumber = true
-opt.number = true
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- Tabs & Indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.autoindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 vim.bo.softtabstop = 2
 
 -- Line Wrapping
-opt.wrap = false
+vim.opt.wrap = false
 
 -- Search Settings
-opt.ignorecase = true
-opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Cursor Line
-opt.cursorline = true
+vim.opt.cursorline = true
 
 -- Appearance
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
-opt.showmode = false
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.signcolumn = "yes"
+vim.opt.showmode = false
 vim.diagnostic.config {
   float = { border = "rounded" }, -- add border to diagnostic popups
 }
 
+vim.lsp.buf.hover()
+
 -- Backspace
-opt.backspace = "indent,eol,start"
+vim.opt.backspace = "indent,eol,start"
 
 -- Split Windows
-opt.splitright = true
-opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- Consider - as part of keyword
-opt.iskeyword:append("-")
+vim.opt.iskeyword:append("-")
 
 -- Disable the mouse while in nvim
-opt.mouse = ""
+vim.opt.mouse = ""
 
 -- Folding
-opt.foldlevel = 20
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
-
+vim.opt.foldlevel = 20
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
