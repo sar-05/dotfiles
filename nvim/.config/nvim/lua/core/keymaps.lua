@@ -38,12 +38,12 @@ vim.keymap.set("n", "<leader>dn", "]c") -- next diff hunk
 vim.keymap.set("n", "<leader>dp", "[c") -- previous diff hunk
 
 -- Quickfix keymaps
-vim.keymap.set("n", "<leader>qo", ":copen<CR>") -- open quickfix list
-vim.keymap.set("n", "<leader>qf", ":cfirst<CR>") -- jump to first quickfix list item
-vim.keymap.set("n", "<leader>qn", ":cnext<CR>") -- jump to next quickfix list item
-vim.keymap.set("n", "<leader>qp", ":cprev<CR>") -- jump to prev quickfix list item
-vim.keymap.set("n", "<leader>ql", ":clast<CR>") -- jump to last quickfix list item
-vim.keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
+vim.keymap.set("n", "<leader>qo", ":copen<CR>", { desc = "open quickfix" }) -- 
+vim.keymap.set("n", "<leader>qf", ":cfirst<CR>", { desc = "jump to first item" }) -- 
+vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { desc = "jump to next item" }) -- 
+vim.keymap.set("n", "<leader>qp", ":cprev<CR>", { desc = "jump to prev item" }) -- 
+vim.keymap.set("n", "<leader>ql", ":clast<CR>", { desc = "jump to last item" }) -- 
+vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { desc = "close quickfix" }) -- 
 
 -- Yazi-nvim
 vim.keymap.set("n", "<leader>-", ":Yazi<CR>") --Opens Yazi at the current file
@@ -58,82 +58,28 @@ vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {desc 
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {desc = "Find in buffer"}) -- fuzzy find in current file buffer
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {desc = "Find in LSP/class symbols"}) -- fuzzy find LSP/class symbols
 vim.keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {desc = "Find LSP/incoming calls"}) -- fuzzy find LSP/incoming calls
-vim.keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({symbols={'function', 'method'}}) end, {desc = "Find methods"}) -- fuzzy find methods in current class
-vim.keymap.set('n', '<leader>ft', function() -- grep file contents in current nvim-tree node
-  local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
-  if not success or not node then return end;
-  require('telescope.builtin').live_grep({search_dirs = {node.absolute_path}})
-end, {desc = "Find in nvim-tree node"})
+vim.keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({symbols={'function', 'method'}}) end, {desc = "Find methods in class"}) -- fuzzy find methods in current class
+-- vim.keymap.set('n', '<leader>ft', function() -- grep file contents in current nvim-tree node
+--   local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
+--   if not success or not node then return end;
+--   require('telescope.builtin').live_grep({search_dirs = {node.absolute_path}})
+-- end, {desc = "Find in nvim-tree node"})
 
 -- Git-blame
 vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>", { desc = "Toggle git blame" }) -- 
 
 -- Harpoon
-vim.keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, {desc = "Mark file"})
-vim.keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, {desc = "Harpoon UI"})
-vim.keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
-vim.keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
-vim.keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
-vim.keymap.set("n", "<leader>h4", function() require("harpoon.ui").nav_file(4) end)
-vim.keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end)
-vim.keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end)
-vim.keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end)
-vim.keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end)
-vim.keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end)
-
--- LSP 
--- Deprecated syntax
--- keymap.set('n', '<leader>gg', '<cmd>lua vim.lsp.buf.hover()<CR>')
--- keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
--- keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
--- keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
--- keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
--- keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
--- keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
--- keymap.set('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
--- keymap.set('n', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
--- keymap.set('v', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
--- keymap.set('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
--- keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
--- keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')
-
--- Defined only after buffer with actived LSP server is attached
-vim.api.nvim_create_autocmd(
-	"LspAttach",
-	{ --  Use LspAttach autocommand to only map the following keys after the language server attaches to the current buffer
-		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-		callback = function(ev)
-			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc" -- Enable completion triggered by <c-x><c-o>
-			-- Notification of LspAttach 
-			local client = vim.lsp.get_client_by_id(ev.data.client_id)
-			if client then
-				vim.notify("LSP [" .. client.name .. "] attached", vim.log.levels.INFO)
-			end
-			-- Buffer local mappings.
-			-- See `:help vim.lsp.*` for documentation on any of the below functions
-			local opts = { buffer = ev.buf }
-      vim.keymap.set('n', '<leader>cg', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', '<leader>cD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', '<leader>ct', vim.lsp.buf.type_definition, opts)
-      vim.keymap.set('n', '<leader>cr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<leader>cs', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('n', '<leader>cR', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-      vim.keymap.set('n', '<leader>cS', vim.lsp.buf.document_symbol, opts)
-			vim.keymap.set("n", "<leader>cf", function()
-				vim.lsp.buf.format({ async = true })
-			end, opts)
-			-- Open the diagnostic under the cursor in a float window
-			vim.keymap.set("n", "<leader>cT", function()
-				vim.diagnostic.open_float({
-					border = "rounded",
-				})
-			end, opts)
-		end,
-	}
-)
+vim.keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "Mark file" })
+vim.keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, { desc = "Harpoon UI" })
+vim.keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "Go to file 1" })
+vim.keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end, { desc = "Go to file 2" })
+vim.keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end, { desc = "Go to file 3" })
+vim.keymap.set("n", "<leader>h4", function() require("harpoon.ui").nav_file(4) end, { desc = "Go to file 4" })
+vim.keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end, { desc = "Go to file 5" })
+vim.keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end, { desc = "Go to file 6" })
+vim.keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end, { desc = "Go to file 7" })
+vim.keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end, { desc = "Go to file 8" })
+vim.keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end, { desc = "Go to file 9" })
 
 -- Vimwiki
 vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex')
@@ -142,3 +88,46 @@ vim.keymap.set('n', '<leader>ws', '<Plug>VimwikiUISelect')
 vim.keymap.set('n', '<leader>wi', '<Plug>VimwikiDiaryIndex')
 vim.keymap.set('n', '<leader>w<leader>w', '<Plug>VimwikiMakeDiaryNote')
 vim.keymap.set('n', '<leader>w<leader>t', '<Plug>VimwikiTabMakeDiaryNote')
+
+--  Use LspAttach autocommand to only map the following keys after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd(
+	"LspAttach",
+	{
+		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+		callback = function(ev)
+			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc" -- Enable completion triggered by <c-x><c-o>
+			-- Notify when an LSP activates
+			local client = vim.lsp.get_client_by_id(ev.data.client_id)
+			if client then
+				vim.notify("LSP [" .. client.name .. "] attached", vim.log.levels.INFO)
+			end
+			-- Buffer local mappings, `:help vim.lsp.*` for docs on the functions below 
+			local function map(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+      end
+      -- LSP keymaps with descriptions
+      map('n', '<leader>cg', function ()
+        vim.lsp.buf.hover({
+          border = "rounded"
+        })
+      end, "Show hover information")
+      map("n", "<leader>cf", function()
+        vim.lsp.buf.format({ async = true })
+			end, "Format document")
+			map("n", "<leader>cd", function()
+				vim.diagnostic.open_float({
+					border = "rounded",
+				})
+			end, "Open diagnostics")
+      map('n', '<leader>cD', vim.lsp.buf.definition, "Go to definition")
+      map('n', '<leader>cT', vim.lsp.buf.declaration, "Go to declaration")
+      map('n', '<leader>ci', vim.lsp.buf.implementation, "Go to implementation")
+      map('n', '<leader>ct', vim.lsp.buf.type_definition, "Go to type definition")
+      map('n', '<leader>cr', vim.lsp.buf.references, "Show references")
+      map('n', '<leader>cs', vim.lsp.buf.signature_help, "Show signature help")
+      map('n', '<leader>cR', vim.lsp.buf.rename, "Rename symbol")
+      map('n', '<leader>ca', vim.lsp.buf.code_action, "Code actions")
+      map('n', '<leader>cS', vim.lsp.buf.document_symbol, "Document symbols")
+		end,
+	}
+)
