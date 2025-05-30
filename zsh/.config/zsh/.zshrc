@@ -47,7 +47,7 @@ bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+SAVEHIST=1000
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTDUP=erase
 setopt appendhistory
