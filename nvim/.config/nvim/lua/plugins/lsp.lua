@@ -16,7 +16,8 @@ return {
           'bashls',
           'marksman',
           'taplo',
-          'texlab'
+          'texlab',
+          'cssls'
         }
       })
       local servers = {
@@ -36,6 +37,7 @@ return {
         bashls = {},
         taplo = {},
         hyprls = {},
+        cssls = {},
         texlab = {
           settings = {
             texlab = {
