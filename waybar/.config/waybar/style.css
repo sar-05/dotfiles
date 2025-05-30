@@ -4,7 +4,7 @@
   border: none;
   border-radius: 0;
   font-family: JetBrainsMono NF, monospace;
-  font-weight: 600;
+  /* font-weight: 600; */
   font-size: 14px;
   min-height: 0;
 }
