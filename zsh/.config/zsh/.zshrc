@@ -73,6 +73,7 @@ alias ff='custom_fastfetch'
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 alias cat='bat'
+alias dtree="pacman -Qq | fzf --preview 'pactree -lur {} | sort' --layout reverse --bind 'enter:execute(pactree -lu {} | sort | less)'"
 
 # Shell integrations
 eval "$(fzf --zsh)"
