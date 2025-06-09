@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "boydaihungst/restore"
-rev = "1bfd5f7"
-hash = "f61cea367316f9459590f5c1dc4fc"
+rev = "b7c3376"
+hash = "d9dbd61d8b814e74a5420dba1e4788c4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "4df8f70"
-hash = "7918aab6a71caf31b58411f789195677"
+rev = "63f9650"
+hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [[flavor.deps]]
 use = "bennyyip/gruvbox-dark"

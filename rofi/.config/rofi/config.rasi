@@ -5,8 +5,8 @@ configuration {
   font: "JetBrainsMono NF 14";
   drun-display-format: "{name}";
   kb-cancel: "Escape";
-  kb-row-down: "J,Down"; 
-  kb-row-up: "K,Up";
+  kb-row-down: "Ctrl+n,Down"; 
+  kb-row-up: "Ctrl+p,Up";
   terminal: "kitty";
 }
 
