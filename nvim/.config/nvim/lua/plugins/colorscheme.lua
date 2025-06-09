@@ -1,12 +1,10 @@
 return {
   'ellisonleao/gruvbox.nvim',
-  --  'ellisonleao/gruvbox.nvim',
   lazy = false,
   priority = 1000,
   opts = {
-    transparent = false,-- Let transparent.nvim handle this
-    contrast = "medium", -- Optional: "soft", "medium", or "hard"
     transparent_mode = true,
+    contrast = "medium" -- Optional: "soft", "medium", or "hard"
   },
   config = function(_, opts)
     require('gruvbox').setup(opts)

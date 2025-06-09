@@ -27,11 +27,7 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 vim.opt.showmode = false
-vim.diagnostic.config {
-  float = { border = "rounded" }, -- add border to diagnostic popups
-}
-
-vim.lsp.buf.hover()
+vim.opt.winborder  = "rounded"
 
 -- Backspace
 vim.opt.backspace = "indent,eol,start"
