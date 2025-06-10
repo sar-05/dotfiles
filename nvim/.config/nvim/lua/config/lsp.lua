@@ -1,0 +1,8 @@
+vim.lsp.enable({
+  "lua_ls",
+  "pyright",
+  "taplo",
+  "marksman",
+  "hyprls",
+  "bashls",
+})
