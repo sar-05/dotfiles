@@ -4,8 +4,8 @@ vim.keymap.set("n", "<space>x", ":.lua<CR>")
 vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 --Yazi filemanager
-vim.keymap.set({"n", "v"}, "<leader>-", "<cmd>Yazi<cr>", { desc="Open yazi at the current file" })
-vim.keymap.set("n","<leader>cw", "<cmd>Yazi cwd<cr>", { desc="Open yazi in nvim's working directory" })
+vim.keymap.set({ "n", "v" }, "<leader>-", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" })
+vim.keymap.set("n", "<leader>cw", "<cmd>Yazi cwd<cr>", { desc = "Open yazi in nvim's working directory" })
 vim.keymap.set("n", "<c-up>", "<cmd>Yazi toggle<cr>", { desc = "Resume the last yazi session" })
 
 --Picker
@@ -14,6 +14,7 @@ vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc 
 vim.keymap.set("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
 vim.keymap.set("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
 vim.keymap.set("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification History" })
+vim.keymap.set("n", "<leader>k", function() Snacks.picker.keymaps() end, { desc = "Keymap List" })
 vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
 
 -- Clear search highlighting
