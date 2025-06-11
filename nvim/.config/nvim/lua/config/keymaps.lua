@@ -1,6 +1,6 @@
 --Sourcing current file, line and seletion
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("n", "<space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>X", ":.lua<CR>")
 vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 --Yazi filemanager
@@ -16,7 +16,7 @@ vim.keymap.set("n", "<leader>:", function() Snacks.picker.command_history() end,
 vim.keymap.set("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification History" })
 vim.keymap.set("n", "<leader>k", function() Snacks.picker.keymaps() end, { desc = "Keymap List" })
 vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
-vim.keymap.set("n", "<leader>sH", function() Snacks.picker.help() end, { desc = "Help Pages" })
+vim.keymap.set("n", "<leader>H", function() Snacks.picker.help() end, { desc = "Help Pages" })
 
 -- Clear search highlighting
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
