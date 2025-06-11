@@ -53,10 +53,30 @@ return {
     fuzzy = { implementation = "prefer_rust_with_warning" }
   },
   opts_extend = { "sources.default" },
+  --Extended config to set custom highlights if gruvbox theme applied
   config = function(_, opts)
+    local colorscheme = vim.g.colors_name
+    if colorscheme:match("^gruvbox") then
+      -- Access gruvbox's color palette
+      local colors = require("gruvbox").palette
+
+      -- Define your highlights using the palette
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenu', {
+        bg = 'NONE',       -- Transparent background
+        fg = colors.light1 -- Gruvbox's light1 color
+      })
+
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', {
+        bg = 'NONE',
+        fg = colors.gray -- Gruvbox's gray for borders
+      })
+
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenuSelection', {
+        bg = colors.dark2, -- Slight background for selection
+        fg = colors.light0 -- Brighter text for selected item
+      })
+    end
+    -- Setup blink.cmp
     require('blink-cmp').setup(opts)
-    vim.api.nvim_set_hl(0, 'BlinkCmpMenu', { bg = 'NONE' })               -- Transparent to match your gruvbox config
-    vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { link = 'GruvboxFg3' }) -- Link to gruvbox's highlight groups
-    vim.api.nvim_set_hl(0, 'BlinkCmpMenuSelection', { link = 'GruvboxBg2' })
   end
 }

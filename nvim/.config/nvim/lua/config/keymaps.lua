@@ -16,6 +16,7 @@ vim.keymap.set("n", "<leader>:", function() Snacks.picker.command_history() end,
 vim.keymap.set("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification History" })
 vim.keymap.set("n", "<leader>k", function() Snacks.picker.keymaps() end, { desc = "Keymap List" })
 vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
+vim.keymap.set("n", "<leader>sH", function() Snacks.picker.help() end, { desc = "Help Pages" })
 
 -- Clear search highlighting
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
