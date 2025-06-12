@@ -5,4 +5,5 @@ vim.lsp.enable({
   "marksman",
   "hyprls",
   "bashls",
+  "texlab"
 })
