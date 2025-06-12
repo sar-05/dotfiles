@@ -23,14 +23,14 @@ return {
   },
   keys = {
     --Picker
-    { "n", "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
-    { "n", "<leader>,",       function() Snacks.picker.buffers() end,         desc = "Buffers" },
-    { "n", "<leader>/",       function() Snacks.picker.grep() end,            desc = "Grep" },
-    { "n", "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "n", "<leader>n",       function() Snacks.picker.notifications() end,   desc = "Notification History" },
-    { "n", "<leader>k",       function() Snacks.picker.keymaps() end,         desc = "Keymap List" },
-    { "n", "<leader>H",       function() Snacks.picker.help() end,            desc = "Help Pages" },
+    { "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
+    { "<leader>,",       function() Snacks.picker.buffers() end,         desc = "Buffers" },
+    { "<leader>/",       function() Snacks.picker.grep() end,            desc = "Grep" },
+    { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader>n",       function() Snacks.picker.notifications() end,   desc = "Notification History" },
+    { "<leader>k",       function() Snacks.picker.keymaps() end,         desc = "Keymap List" },
+    { "<leader>H",       function() Snacks.picker.help() end,            desc = "Help Pages" },
     -- Snacks file explorer
-    { "n", "<leader>e",       function() Snacks.explorer() end,               desc = "File Explorer" }
+    { "<leader>e",       function() Snacks.explorer() end,               desc = "File Explorer" }
   }
 }
