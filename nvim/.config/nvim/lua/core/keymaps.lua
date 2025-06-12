@@ -4,7 +4,7 @@ vim.keymap.set("n", "<space>X", ":.lua<CR>")
 vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 -- Clear search highlighting
-vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 
 -- Window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
