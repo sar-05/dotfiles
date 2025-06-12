@@ -74,6 +74,7 @@ alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 alias cat='bat'
 alias dtree="pacman -Qq | fzf --preview 'pactree -lur {} | sort' --layout reverse --bind 'enter:execute(pactree -lu {} | sort | less)'"
+alias rclone-proton-sync="rclone sync ~/Documents/projects/ --exclude '/.**/' Proton:'projects' -vv && rclone sync ~/Documents/areas/ --exclude '/.**/' Proton:'areas' -vv && rclone sync ~/Documents/resources/ --exclude '/.**/' Proton:'resources' -vv"
 
 # Shell integrations
 eval "$(fzf --zsh)"
