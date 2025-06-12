@@ -14,6 +14,7 @@ fi
 # Define your browsers (adjust commands to match your system)
 browsers=(
     "flatpak run --env=MOZ_ENABLE_WAYLAND=1 --env=GDK_BACKEND=wayland net.mullvad.MullvadBrowser|Mullvad Browser" 
+    "flatpak run app.zen_browser.zen|Zen"
     "flatpak run org.mozilla.firefox|Firefox"
     "flatpak run com.brave.Browser|Brave"
 )
