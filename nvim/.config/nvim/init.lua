@@ -1,8 +1,7 @@
---Bootstrap Lazy plugin manager
+--Bootstrap lazy plugin manager
 require("config.lazy")
-
---Load vim opts and keymaps
-require("config.options")
-require("config.keymaps")
 require("config.lsp")
 require("config.autocmds")
+--Core vim options
+require("core.options")
+require("core.keymaps")

@@ -1,5 +1,5 @@
----@type LazySpec
-return{
+-- ---@type LazySpec
+return {
   "mikavilpas/yazi.nvim",
   event = "VeryLazy",
   dependencies = {
@@ -7,7 +7,12 @@ return{
     -- https://github.com/folke/snacks.nvim
     "folke/snacks.nvim"
   },
-  ---@type YaziConfig | {}
+  keys = {
+    { "<leader>-", "<cmd>Yazi<cr>", desc = "Open yazi at the current file" },
+    { "n",         "<leader>cw",    "<cmd>Yazi cwd<cr>",                   desc = "Open yazi in nvim's working directory" },
+    { "n",         "<c-up>",        "<cmd>Yazi toggle<cr>",                desc = "Resume the last yazi session" }
+  },
+  -- ---@type YaziConfig | {}
   opts = {
     -- if you want to open yazi instead of netrw, see below for more info
     open_for_directories = false,
