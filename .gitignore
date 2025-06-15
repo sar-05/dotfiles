@@ -78,6 +78,7 @@ tmux/.config/tmux/plugins/
 # Yazi (flavors and plugins are downloaded automatically)
 yazi/.config/yazi/flavors/
 yazi/.config/yazi/plugins/
+yazi/.config/yazi/package.toml
 
 # Hyprland (These files are updated constantly by scripts and should not be synced)
 hypr/.config/hypr/hyprpaper.conf
