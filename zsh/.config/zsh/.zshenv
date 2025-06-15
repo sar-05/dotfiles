@@ -13,6 +13,7 @@ export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
 # npm configuration (requires creating ~/.npmrc file with XDG paths)
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -31,9 +32,6 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 export GOPATH="$XDG_CONFIG_HOME/go"
-
-# Disabled files
-export LESSHISTFILE=-
 
 # Update PATH (append local bin if not already present)
 case ":$PATH:" in
