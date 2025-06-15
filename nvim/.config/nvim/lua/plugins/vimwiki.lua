@@ -11,7 +11,7 @@ return {
     { '<leader>w<leader>w', '<Plug>VimwikiMakeDiaryNote' },
     { '<leader>w<leader>t', '<Plug>VimwikiTabMakeDiaryNote' }
   },
-  config = function()
+  init = function()
     -- Configure vimwiki before the plugin loads
     vim.g.vimwiki_list = {
       {
