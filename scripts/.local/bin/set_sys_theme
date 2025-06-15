@@ -70,6 +70,7 @@ else
 fi
 
 # Validate theme exists
+# Themes at https://www.pling.com/p/1681313
 if [ ! -d "/usr/share/themes/$theme" ]; then
   echo "Theme $theme not found in /usr/share/themes/"
   notify-send "Theme Error" "Theme $theme not found"
