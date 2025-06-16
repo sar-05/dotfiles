@@ -87,6 +87,9 @@ hypr/.config/hypr/hyprlock.conf
 # Waybar current theme symlink (points to different themes)
 waybar/.config/waybar/themes/current.css
 
+# Desktop files
+com.brave.Browser.flextop.brave-*-Default.desktop
+
 # Additional application-specific ignores that might be needed:
 # MPD (if you don't want to sync database and state)
 # mpd/.config/mpd/database
