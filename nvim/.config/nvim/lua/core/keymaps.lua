@@ -12,3 +12,6 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally"
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 vim.keymap.set("n", "<leader>sm", "<cmd>Maximize<CR>", { desc = "Toggle maximize" })
+
+-- Take me to wiki
+vim.keymap.set("n", "<leader>ww", "<cmd>e ~/Documents/wiki/index.md<CR>", { desc = "Go to main wiki" })

@@ -1,0 +1,16 @@
+return {
+  'serenevoid/kiwi.nvim',
+  opts = {
+    {
+      name = "wiki",
+      path = "Documents/wiki"
+    }
+  },
+  keys = {
+    { "<leader>ww", ":lua require('kiwi').open_wiki_index('wiki')<cr>", desc = "Open Wiki index" },
+    { "<leader>wd", ":lua require('kiwi').open_diary_index()<cr>",      desc = "Open diary index" },
+    { "<leader>wt", ":lua require('kiwi').open_diary_new()<cr>",        desc = "Open today's diary" },
+    { "T",          ":lua require('kiwi').todo.toggle()<cr>",           desc = "Toggle Markdown Task" },
+  },
+  lazy = true
+}
