@@ -71,6 +71,7 @@ nvim/.config/nvim/.netrw*
 nvim/.config/nvim/undodir/
 nvim/.config/nvim/swap/
 nvim/.config/nvim/backup/
+nvim/.config/nvim/spell/
 
 # Tmux (plugins are managed automatically)
 tmux/.config/tmux/plugins/
