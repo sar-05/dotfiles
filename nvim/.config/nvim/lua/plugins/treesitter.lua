@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "OXY2DEV/markview.nvim" },
+    dependencies = { "saghen/blink.cmp", "OXY2DEV/markview.nvim" },
     build = ":TSUpdate",
     config = function()
       ---@diagnostic disable-next-line: missing-fields --Disables false-positive warning
