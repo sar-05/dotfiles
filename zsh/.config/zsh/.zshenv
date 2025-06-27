@@ -33,8 +33,11 @@ export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 export GOPATH="$XDG_CONFIG_HOME/go"
 
-# Update PATH (append local bin if not already present)
-case ":$PATH:" in
-    *":$HOME/.local/bin:"*) ;;
-    *) export PATH="$PATH:$HOME/.local/bin" ;;
-esac
+# Update PATH
+export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux"
+
+# Update MANPATH
+export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+
+# Update INFOPATH
+export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
