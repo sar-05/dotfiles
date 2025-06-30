@@ -76,6 +76,7 @@ alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 alias cat='bat'
 alias dtree="pacman -Qq | fzf --preview 'pactree -lur {} | sort' --layout reverse --bind 'enter:execute(pactree -lu {} | sort | less)'"
 alias vim=nvim
+alias gr='cd $(git rev-parse --show-toplevel)'
 
 # Shell integrations
 eval "$(fzf --zsh)"
