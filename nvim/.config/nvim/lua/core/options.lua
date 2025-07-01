@@ -21,3 +21,6 @@ vim.g.markdown_fenced_languages = {
 }
 
 -- vim.wo.conceallevel             = 2 --Tree-sitter md concealing
+vim.diagnostic.config({
+  virtual_text = true
+})
