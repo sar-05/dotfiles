@@ -1,15 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      { "saghen/blink.cmp" },
-      { --Added markview here to ensure it loads before tree-sitter
-        "OXY2DEV/markview.nvim",
-        opts = function()
-          return require("markview.extras.checkboxes").setup() --Enables checkboxes
-        end
-      }
-    },
+    -- dependencies = {
+    -- { "saghen/blink.cmp" },
+    --   { --Added markview here to ensure it loads before tree-sitter
+    --     "OXY2DEV/markview.nvim",
+    --     -- opts = function()
+    --     --   return require("markview.extras.checkboxes").setup() --Enables checkboxes
+    --     -- end
+    --   }
+    -- },
     build = ":TSUpdate",
     config = function()
       ---@diagnostic disable-next-line: missing-fields --Disables false-positive warning

@@ -7,11 +7,10 @@ return {
         root_tell = 'index.md'
       },
       links = {
-        transform_explicit = function(text)
-          text = text:gsub(" ", "-")
-          text = text:lower()
-          return (text)
-        end
+        transform_explicit = false
+      },
+      mappings = {
+        MkdnEnter = { { 'i', 'n', 'v' }, '<CR>' }
       }
     })
   end
