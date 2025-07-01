@@ -1,29 +1,32 @@
 --Match Neomvim clipboard to system clipboard
-vim.opt.clipboard               = 'unnamedplus'
+vim.opt.clipboard                = 'unnamedplus'
 
 --Replace default tab indenting with spaces
-vim.opt.expandtab               = true
-vim.opt.shiftwidth              = 2
-vim.opt.softtabstop             = 2
-vim.opt.tabstop                 = 2
+vim.opt.expandtab                = true
+vim.opt.shiftwidth               = 2
+vim.opt.softtabstop              = 2
+vim.opt.tabstop                  = 2
+
+--Disables function which only purpose is to set tab as 4 spaces in .md files
+vim.g.markdown_recommended_style = 0
+-- vim.wo.conceallevel             = 2 -- Default tree-sitter md concealing
 
 -- Line Numbers
-vim.opt.number                  = true
-vim.opt.relativenumber          = true
+vim.opt.number                   = true
+vim.opt.relativenumber           = true
 
 -- Line Wrapping
-vim.opt.wrap                    = false
+vim.opt.wrap                     = false
 
 --Theme
-vim.opt.background              = "dark" -- or "light" for light mode
-vim.opt.signcolumn              = "yes"
-vim.opt.showmode                = false
-vim.opt.winborder               = "rounded"
-vim.g.markdown_fenced_languages = {
-    'python', 'lua', 'bash=sh', 'javascript', 'html', 'css', 'cpp', 'rust'
+vim.opt.background               = "dark" -- or "light" for light mode
+vim.opt.signcolumn               = "yes"
+vim.opt.showmode                 = false
+vim.opt.winborder                = "rounded"
+vim.g.markdown_fenced_languages  = {
+  'python', 'lua', 'bash=sh', 'javascript', 'html', 'css', 'cpp', 'rust'
 }
 
--- vim.wo.conceallevel             = 2 --Tree-sitter md concealing
 vim.diagnostic.config({
-    virtual_text = true
+  virtual_text = true
 })
