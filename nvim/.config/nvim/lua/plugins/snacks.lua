@@ -3,18 +3,27 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    bufdelete = { enabled = true }, -- Essential for yazi.nvim
-    bigfile = { enabled = true },   --Optimizes big files
-    indent = { enabled = true },    --Indent lines
-    notifier = { enabled = true },  --Better notifications
+    bufdelete = { enabled = true },
+    bigfile = { enabled = true },  --Optimizes big files
+    indent = { enabled = true },   --Indent lines
+    notifier = { enabled = true }, --Better notifications
     scroll = { enabled = true },
-    picker = {                      --Modern picker
+    picker = {                     --Modern picker
       enabled = true,
       frecency = true,
+      layout = "ivy",
+      sources = {
+        grep = {
+          hidden = true
+        },
+        keymaps = {
+          layout = "select"
+        }
+      }
     },
-    explorer = { enabled = true },
     image = { enabled = true },
     statuscolumn = { enabled = true },
+    explorer = { enabled = false },
     dashboard = { enabled = false },
     input = { enabled = false },
     quickfile = { enabled = false },
