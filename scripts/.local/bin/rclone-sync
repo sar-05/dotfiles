@@ -7,7 +7,7 @@ aur_pkgs_path="$pkgs_path/aur"
 flatpaks_pkgs_path="$pkgs_path/flatpaks"
 exclude_file_path="$XDG_CONFIG_HOME/rclone/rclone-exclude.txt"
 remote="Proton"
-date=$(date +%F-%R)
+date=$(date +%F-%H%M)
 
 # Check if rclone is installed
 if ! command -v rclone > /dev/null; then
