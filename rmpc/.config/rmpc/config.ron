@@ -31,12 +31,12 @@
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
-            "2":       SwitchToTab("Lyrics"),
-            "3":       SwitchToTab("Artists"),
-            "4":       SwitchToTab("Album Artists"),
-            "5":       SwitchToTab("Albums"),
-            "6":       SwitchToTab("Playlists"),
-            "7":       SwitchToTab("Search"),
+            "2":       SwitchToTab("Search"),
+            "3":       SwitchToTab("Lyrics"),
+            "4":       SwitchToTab("Artists"),
+            "5":       SwitchToTab("Album Artists"),
+            "6":       SwitchToTab("Albums"),
+            "7":       SwitchToTab("Playlists"),
             "q":       Quit,
             ">":       NextTrack,
             "p":       TogglePause,
@@ -121,6 +121,10 @@
             ),
         ),
         (
+            name: "Search",
+            pane: Pane(Search),
+        ),
+        (
             name: "Lyrics",
             pane: Pane(Lyrics),
         ),
@@ -143,10 +147,6 @@
         (
             name: "Playlists",
             pane: Pane(Playlists),
-        ),
-        (
-            name: "Search",
-            pane: Pane(Search),
         ),
     ],
 )
