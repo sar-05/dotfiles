@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+files=(*)
+target="$HOME/.local/bin"
+
+[[ -d "$target" ]] ||{  mkdir -p "$target" && echo "Created missing $target dir" }
+
+for file in "${files[@]}"; do
+  path=$(realpath $file)
+  ln -s "$path" "$target" && echo "Created $file symlink to $target"
+done
