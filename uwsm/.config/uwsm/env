@@ -1,0 +1,50 @@
+# General environment variables for all graphical sessions
+# Format: export KEY=VALUE (no comments on same line)
+
+# XDG Base Directory Specification
+# Note: uwsm automatically sets these, but you can override if needed
+# export XDG_CONFIG_HOME="$HOME/.config"
+# export XDG_DATA_HOME="$HOME/.local/share"
+# export XDG_STATE_HOME="$HOME/.local/state"
+# export XDG_CACHE_HOME="$HOME/.cache"
+
+# Application-specific XDG compliance
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm"
+export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
+export YARN_CACHE_FOLDER="$XDG_CACHE_HOME/yarn"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+# General environment
+export EDITOR=nvim
+export GCM_CREDENTIAL_STORE=secretservice
+export GOPATH="$XDG_CONFIG_HOME/go"
+
+# PATH additions
+export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux"
+export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
+
+# Cursor theme (general)
+export XCURSOR_SIZE=24
+export XCURSOR_THEME=rose-pine-hyprcursor
+
+# Qt/GTK theming
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORM=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_THEME=Gruvbox-Dark
+
+# XDG Desktop integration
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+export XDG_DATA_DIRS=/usr/share:/var/lib/flatpak/exports/share:~/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
