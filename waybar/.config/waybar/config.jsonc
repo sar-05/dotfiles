@@ -7,10 +7,9 @@
   "gtk-layer-shell": true,
   "height": 0,
   "modules-left": [
-    "hyprland/workspaces",
+    "hyprland/workspaces"
   ],
-  "modules-center": [
-  ],
+  "modules-center": [],
   "modules-right": [
     "tray",
     "idle_inhibitor",
@@ -40,8 +39,30 @@
   "battery": {
     "format": "{icon} {capacity}%",
     "format-icons": {
-      "discharging": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-      "charging": ["󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋","󰂅"]
+      "discharging": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ]
     },
     "bat-compatibility": false
   },
@@ -53,22 +74,28 @@
     "icon-size": 15,
     "tooltip": false,
     "spacing": 13
-  }, 
+  },
   "idle_inhibitor": {
-	     "format": "{icon}",
-	     "format-icons": {
-		           "activated": "",
-		           "deactivated": ""
-	     },
-	    "min-length": 3,
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "min-length": 3
   },
   "network": {
     "format": "{icon} {signalStrength}%",
-    "format-icons": ["󰤯 ","󰤟","󰤢","󰤥","󰤨"],
+    "format-icons": [
+      "󰤯 ",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "format-disconnected": "󰤭 disconnected",
     "tooltip": true,
     "tooltip-format": "{essid}",
-    "on-click": "nm-connection-editor",
+    "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -101,7 +128,7 @@
   },
   "clock": {
     "interval": 60,
-    "tooltip": false, 
-    "format": "{:%d-%m | %I:%M %p}",
-  },
+    "tooltip": false,
+    "format": "{:%d-%m | %I:%M %p}"
+  }
 }
