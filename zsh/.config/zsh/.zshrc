@@ -22,14 +22,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light jeffreytse/zsh-vi-mode
-
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::command-not-found
+# zinit light jeffreytse/zsh-vi-mode
 
 # Create cache directory if it doesn't exist
 [[ ! -d "$XDG_CACHE_HOME/zsh" ]] && mkdir -p "$XDG_CACHE_HOME/zsh"
@@ -39,12 +32,13 @@ autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 zinit cdreplay -q
 
-#Keybindings
-bindkey -v
-bindkey -M vicmd 'k' history-search-backward
-bindkey -M vicmd 'j' history-search-forward
-bindkey -M vicmd 'C' clear-screen
+#Keymaps
+bindkey -v #Sets vi mode
+bindkey -M vicmd '^p' history-search-backward
+bindkey -M vicmd '^j' history-search-forward
+bindkey -M vicmd '^l' clear-screen
 bindkey '^[w' kill-region
+bindkey '^y' autosuggest-accept
 
 # History
 HISTSIZE=5000
@@ -69,7 +63,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 alias vim='nvim'
-alias update='sudo pacman -Syu && yay -Syu && flatpak update'
 alias ff='custom_fastfetch'
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
