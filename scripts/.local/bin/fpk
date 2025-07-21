@@ -62,13 +62,19 @@ copy_id(){
   fi
 }
 
-while getopts "silru" flag; do
+# Exit if no arguments are given
+if [[ $# -eq 0 ]]; then
+    show_help
+    exit 0
+fi
+
+while getopts "silruh" flag; do
   case "$flag" in
     's')
       if [[ -n "$QUERY" ]]; then
         flatpak search "$QUERY" | flatpak_picker | copy_id 
       else
-        echo "ERROR: No query was given" ; exit 1
+        echo "ERROR: No query was given" >&2
       fi
       ;; 
     'i')
@@ -76,7 +82,7 @@ while getopts "silru" flag; do
         app_id=$(flatpak search "$QUERY" | flatpak_picker)
         [[ -n "$app_id" ]] && flatpak install "$app_id"
       else
-        echo "ERROR: No query was given" ; exit 1
+        echo "ERROR: No query was given" >&2
       fi
       ;;
     'l')
@@ -88,6 +94,9 @@ while getopts "silru" flag; do
       ;;
     'u')
       flatpak update
+      ;;
+    'h')
+      show_help
       ;;
     ?)
       show_help
