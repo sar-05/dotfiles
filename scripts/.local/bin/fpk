@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Wrapper functions for better flatpak management with fzf
+#
+set -euo pipefail
+
+#Check for dependencies
+dependencies=(flatpak fzf)
+for dependency in "${dependencies[@]}"; do
+  if ! command -v "$dependency" > /dev/null; then
+    echo "ERROR: $dependency not found"
+    exit 1
+  fi
+done
+
+#Query
+readonly QUERY="${2:-}"
+
+flatpak_picker(){
+  local application query
+  if [[ "$#" -eq 1 ]]; then
+    query="$1"
+    application=$(fzf -q "$query" --delimiter='\t' --with-nth=1,2)
+  elif [[ "$#" -eq 0 ]]; then
+    application=$(fzf --delimiter='\t' --with-nth=1,2)
+  else
+    echo "ERROR: flatpak_picker can have more than 1 argument"
+  fi
+  app_id=$(echo "$application" | awk -F '\t' '{print $3}')
+  echo "$app_id"
+}
+
+flatpak_list(){
+  if [[ -n "$QUERY" ]]; then
+    flatpak list --columns=name,description,application | flatpak_picker "$QUERY"
+  else 
+    flatpak list --columns=name,description,application | flatpak_picker 
+  fi
+}
+
+copy_id(){
+  command -v wl-copy > /dev/null \
+    && wl-copy \
+    || echo 'WARNING: wl-copy not found' \
+    && cat
+}
+
+while getopts "silru" flag; do
+  case "$flag" in
+    's')
+      if [[ -n "$QUERY" ]]; then
+        flatpak search "$QUERY" | flatpak_picker | copy_id 
+      else
+        echo "ERROR: No query was given" ; exit 1
+      fi
+      ;; 
+    'i')
+      if [[ -n "$QUERY" ]]; then
+        app_id=$(flatpak search "$QUERY" | flatpak_picker)
+        [[ -n "$app_id" ]] && flatpak install "$app_id"
+      else
+        echo "ERROR: No query was given" ; exit 1
+      fi
+      ;;
+    'l')
+      flatpak_list | copy_id
+      ;;
+    'r')
+      app_id=$(flatpak_list)
+      [[ -n "$app_id" ]] && flatpak remove --delete-data "$app_id"
+      ;;
+    'u')
+      flatpak update
+      ;;
+    ?)
+      echo "ERROR: $1 isn't a valid option"
+  esac
+done
