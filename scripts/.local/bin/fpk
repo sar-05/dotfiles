@@ -7,7 +7,7 @@ set -euo pipefail
 dependencies=(flatpak fzf)
 for dependency in "${dependencies[@]}"; do
   if ! command -v "$dependency" > /dev/null; then
-    echo "ERROR: $dependency not found"
+    echo "ERROR: $dependency not found" >&2
     exit 1
   fi
 done
@@ -54,10 +54,12 @@ flatpak_list(){
 }
 
 copy_id(){
-  command -v wl-copy > /dev/null \
-    && wl-copy \
-    || echo 'WARNING: wl-copy not found' \
-    && cat
+  if command -v wl-copy > /dev/null; then 
+    wl-copy
+  else
+    echo 'WARNING: wl-copy not found' >&2
+    cat
+  fi
 }
 
 while getopts "silru" flag; do
