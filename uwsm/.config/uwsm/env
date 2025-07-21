@@ -26,6 +26,7 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 export GOPATH="$XDG_CONFIG_HOME/go"
+export BAT_THEME="gruvbox-dark"
 
 # PATH additions
 export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux"
