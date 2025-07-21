@@ -35,17 +35,14 @@ EOF
 }
 
 flatpak_picker(){
-  local application query
-  if [[ "$#" -eq 1 ]]; then
-    query="$1"
+  local application
+  local query="${1:-}"
+  if [[ -n "$query" ]]; then
     application=$(fzf -q "$query" --delimiter='\t' --with-nth=1,2)
-  elif [[ "$#" -eq 0 ]]; then
-    application=$(fzf --delimiter='\t' --with-nth=1,2)
   else
-    echo "ERROR: flatpak_picker can't have more than 1 argument"
+    application=$(fzf --delimiter='\t' --with-nth=1,2)
   fi
-  app_id=$(echo "$application" | awk -F '\t' '{print $3}')
-  echo "$app_id"
+  echo "$application" | awk -F '\t' '{print $3}'
 }
 
 flatpak_list(){
