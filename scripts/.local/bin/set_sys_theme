@@ -115,13 +115,6 @@ dbus-send --session --dest=org.gtk.Settings --type=method_call /org/gtk/Settings
 # Switch wallpaper
 hyprctl hyprpaper wallpaper "$monitor,$wallpaper"
 
-#Override hyprpaper.conf file
-cat > ~/.config/hypr/hyprpaper.conf << EOF
-preload = $light_wallpaper
-preload = $dark_wallpaper
-wallpaper = $monitor,$wallpaper
-EOF
-
 #Override hyprlock wallpaper line
 sed -i "s|path = .*png|path = $wallpaper|" ~/.config/hypr/hyprlock.conf
 

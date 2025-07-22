@@ -82,7 +82,6 @@ yazi/.config/yazi/plugins/
 yazi/.config/yazi/package.toml
 
 # Hyprland (These files are updated constantly by scripts and should not be synced)
-hypr/.config/hypr/hyprpaper.conf
 hypr/.config/hypr/hyprlock.conf
 
 # Waybar current theme symlink (points to different themes)
