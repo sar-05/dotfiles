@@ -6,5 +6,6 @@ vim.lsp.enable({
   "hyprls",
   "bashls",
   "texlab",
-  "jsonls"
+  "jsonls",
+  "systemd_ls"
 })
