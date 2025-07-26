@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+is_defined(){
+  local var="$1"
+  if [[ -z "$var" ]]; then
+    echo "ERROR: $var is not defined"
+    return 1
+  fi
+}
+
+readonly REQUIRED_VARS=(light_theme light_wallpaper dark_theme dark_wallpaper)
+
+readonly conf_file="${XDG_CONFIG_HOME:=$HOME/.config}/set-theme/set-theme.conf"
+while IFS='=' read -r key value; do
+  #regex matches whitespace POSIX character class and # at the start of a line
+  [[ -n "$key" && ! "$key" =~ ^[[:space:]]*# ]] || continue 
+  declare "$key=$value"
+done < "$conf_file"
+
+for var in "${REQUIRED_VARS[@]}"; do
+  if ! is_defined "$var"; then
+    exit 1
+  fi
+done
