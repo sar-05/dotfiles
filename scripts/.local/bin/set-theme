@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
+#Allows to set GTK and QT themes systemwide, including flatpaks
+#
 set -euo pipefail
+
+readonly REQUIRED_VARS=(light_gtk light_wallpaper dark_gtk dark_wallpaper)
+readonly CONF_FILE="${XDG_CONFIG_HOME:=$HOME/.config}/set-theme/set-theme.conf"
 
 is_defined(){
   local var="$1"
-  if [[ -z "$var" ]]; then
+  if ! declare -p "$var" &>/dev/null; then
     echo "ERROR: $var is not defined"
     return 1
   fi
 }
 
-readonly REQUIRED_VARS=(light_theme light_wallpaper dark_theme dark_wallpaper)
-
-readonly conf_file="${XDG_CONFIG_HOME:=$HOME/.config}/set-theme/set-theme.conf"
 while IFS='=' read -r key value; do
   #regex matches whitespace POSIX character class and # at the start of a line
   [[ -n "$key" && ! "$key" =~ ^[[:space:]]*# ]] || continue 
   declare "$key=$value"
-done < "$conf_file"
+done < "$CONF_FILE"
 
 for var in "${REQUIRED_VARS[@]}"; do
   if ! is_defined "$var"; then
