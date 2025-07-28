@@ -66,38 +66,35 @@
 # Files specific to applications that generate a lot of unnecessary content.
 
 # Neovim
-nvim/.config/nvim/plugin/
-nvim/.config/nvim/.netrw*
-nvim/.config/nvim/undodir/
-nvim/.config/nvim/swap/
-nvim/.config/nvim/backup/
-nvim/.config/nvim/spell/
+nvim/plugin/
+nvim/.netrw*
+nvim/undodir/
+nvim/swap/
+nvim/backup/
+nvim/spell/
 
 # Tmux (plugins are managed automatically)
-tmux/.config/tmux/plugins/
+tmux/plugins/
 
 # Yazi (flavors and plugins are downloaded automatically)
-yazi/.config/yazi/flavors/
-yazi/.config/yazi/plugins/
-yazi/.config/yazi/package.toml
+yazi/flavors/
+yazi/plugins/
+yazi/package.toml
 
 # Hyprland (These files are updated constantly by scripts and should not be synced)
-hypr/.config/hypr/hyprlock.conf
+hypr/hyprlock.conf
 
 # Waybar current theme symlink (points to different themes)
-waybar/.config/waybar/themes/current.css
+waybar/themes/current.css
 
 # Desktop files
 com.brave.Browser.flextop.brave-*-Default.desktop
 
 # Additional application-specific ignores that might be needed:
 # MPD (if you don't want to sync database and state)
-# mpd/.config/mpd/database
-# mpd/.config/mpd/state
-# mpd/.config/mpd/sticker.sql
-
-# Clipcat (runtime state) - if you add it later
-# clipcat/.config/clipcat/state/
+# mpd/database
+# mpd/state
+# mpd/sticker.sql
 
 # -----------------------------------------------------------------------------
 # System and Editor Files
