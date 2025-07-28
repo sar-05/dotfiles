@@ -1,4 +1,5 @@
-@import "themes/current.css";  /* Default theme, will be symlinked */
+@define-color text_color #ddc7a1;
+@define-color active_color #e78a4e;
 
 * {
   border: none;
