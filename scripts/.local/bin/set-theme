@@ -125,4 +125,7 @@ fi
 
 #Apply Wallpaper
 hyprctl hyprpaper wallpaper "$(hyprctl monitors -j | jq -r '.[0].name'),$WALLPAPER"
-ln -sf "$WALLPAPER" "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprconf/current_wallpaper.png"
+readonly CACHE_WALL="${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper"
+[[ -d "$CACHE_WALL" ]] || mkdir -p "$CACHE_WALL"
+ln -sf "$WALLPAPER" "$CACHE_WALL/wallpaper.png"
+
