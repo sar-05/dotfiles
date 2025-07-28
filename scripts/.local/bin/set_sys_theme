@@ -77,7 +77,7 @@ if [ ! -d "/usr/share/themes/$theme" ]; then
   exit 1
 fi
 
-gtk_preference=$(echo $theme | cut -d'-' -f2 | tr '[:upper:]' '[:lower:]')
+gtk_preference=$(echo "$theme" | cut -d'-' -f2 | tr '[:upper:]' '[:lower:]')
 
 # Apply GTK theme settings
 gsettings set org.gnome.desktop.interface gtk-theme "$theme"
@@ -90,7 +90,7 @@ mkdir -p ~/.config/gtk-4.0
 
 # Symlink the theme's GTK4 CSS files
 if [ -d "/usr/share/themes/$theme/gtk-4.0" ]; then
-  ln -s /usr/share/themes/$theme/gtk-4.0/* ~/.config/gtk-4.0/
+  ln -s /usr/share/themes/"$theme"/gtk-4.0/* ~/.config/gtk-4.0/
 fi
 
 # Make sure themes are in ~/.themes for Flatpak
@@ -101,6 +101,7 @@ if [ ! -d "$HOME/.themes/$dark_theme" ] || [ "/usr/share/themes/$dark_theme" -nt
   rm -rf "$HOME/.themes/$dark_theme"
   cp -r "/usr/share/themes/$dark_theme" "$HOME/.themes/"
 fi
+
 if [ ! -d "$HOME/.themes/$light_theme" ] || [ "/usr/share/themes/$light_theme" -nt "$HOME/.themes/$light_theme" ]; then
   rm -rf "$HOME/.themes/$light_theme"
   cp -r "/usr/share/themes/$light_theme" "$HOME/.themes/"
