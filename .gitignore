@@ -81,9 +81,6 @@ yazi/flavors/
 yazi/plugins/
 yazi/package.toml
 
-# Hyprland (These files are updated constantly by scripts and should not be synced)
-hypr/hyprlock.conf
-
 # Waybar current theme symlink (points to different themes)
 waybar/themes/current.css
 
