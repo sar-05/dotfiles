@@ -1,4 +1,3 @@
-# Broken since Hyprland 5.0.0, disabled until upstream fix
 [[shades]]
 name = "grayscale"
 start_time = 23:00:00
