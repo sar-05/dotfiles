@@ -49,3 +49,6 @@ export XDG_CURRENT_DESKTOP=Hyprland
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=Hyprland
 export XDG_DATA_DIRS=/usr/share:/var/lib/flatpak/exports/share:~/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+
+# KVM virt
+export LIBVIRT_DEFAULT_URI='qemu:///system'
