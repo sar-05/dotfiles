@@ -23,10 +23,13 @@ vim.opt.background               = "dark" -- or "light" for light mode
 vim.opt.signcolumn               = "yes"
 vim.opt.showmode                 = false
 vim.opt.winborder                = "rounded"
+
+--Fenced code block syntax highlighting
 vim.g.markdown_fenced_languages  = {
   'python', 'lua', 'bash=sh', 'javascript', 'html', 'css', 'cpp', 'rust'
 }
 
+-- Inline diagnostics
 vim.diagnostic.config({
   virtual_text = true
 })
