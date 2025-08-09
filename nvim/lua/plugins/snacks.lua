@@ -3,12 +3,12 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    bufdelete = { enabled = true },
-    bigfile = { enabled = true },  --Optimizes big files
-    indent = { enabled = true },   --Indent lines
-    notifier = { enabled = true }, --Better notifications
-    scroll = { enabled = true },
-    picker = {                     --Modern picker
+    bufdelete = { enabled = true }, -- Deletes buffers without disrupting window layout
+    bigfile = { enabled = true },   --Optimizes big files
+    indent = { enabled = true },    --Indent lines
+    notifier = { enabled = true },  --Better notifications
+    scroll = { enabled = true },    --Smooth scrolling
+    picker = {                      --Modern picker
       enabled = true,
       frecency = true,
       layout = "ivy",
@@ -21,7 +21,17 @@ return {
         }
       }
     },
-    image = { enabled = true },
+    image = {
+      enabled = true,
+      -- Preview images are first converted to .png and copied to
+      -- :lua print(vim.fn.stdpath("cache") .. "/snacks/image")
+      doc = {
+        inline = false,
+        float = true,
+        max_width = 50,
+        max_height = 25,
+      },
+    },
     statuscolumn = { enabled = true },
     explorer = { enabled = false },
     dashboard = { enabled = false },
