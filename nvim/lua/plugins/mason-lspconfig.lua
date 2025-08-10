@@ -10,7 +10,8 @@ return {
       "bashls",
       "texlab",
       "jsonls",
-      "systemd_ls"
+      "systemd_ls",
+      "powershell_es"
     }
   },
   dependencies = {
