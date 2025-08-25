@@ -6,7 +6,7 @@ export HYPRCURSOR_SIZE=24
 export HYPRCURSOR_THEME=rose-pine-hyprcursor
 
 # Hyprland-specific paths
-export HYPRSHOT_DIR=/home/sar/Pictures/Screenshots/
+export HYPRSHOT_DIR=/home/sar/Pictures/screenshots
 
 # If you have multi-GPU setup, uncomment and adjust:
 # export AQ_DRM_DEVICES=/dev/dri/card0

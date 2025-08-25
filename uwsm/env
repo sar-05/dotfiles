@@ -20,6 +20,7 @@ export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export YARN_CACHE_FOLDER="$XDG_CACHE_HOME/yarn"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export HISTFILE="${XDG_STATE_HOME}/bash/history"
 
 # General environment
 export EDITOR=nvim
