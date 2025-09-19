@@ -17,6 +17,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 #Autocd
 setopt autocd
 
+#Autocorrection
+setopt CORRECT
+
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
