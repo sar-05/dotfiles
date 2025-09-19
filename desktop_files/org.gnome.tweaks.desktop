@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Tweaks
+Comment=Tweak advanced GNOME settings
+Exec=gnome-tweaks
+Icon=org.gnome.tweaks
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+StartupNotify=true
+X-GNOME-UsesNotifications=false
+Keywords=Gnome;GTK;Settings;Advanced;Preferences;
