@@ -29,7 +29,7 @@ export GOPATH="$XDG_CONFIG_HOME/go"
 export BAT_THEME="gruvbox-dark"
 
 # PATH additions
-export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/home/sar/.local/share/cargo/bin"
 export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
