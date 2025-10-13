@@ -52,3 +52,8 @@ export XDG_DATA_DIRS=/usr/share:/var/lib/flatpak/exports/share:~/.local/share/fl
 
 # KVM virt
 export LIBVIRT_DEFAULT_URI='qemu:///system'
+
+# Wiki
+export WIKI="$HOME/Documents/wiki"
+export WIKI_IMAGES="$HOME/Documents/wiki/images"
+export WIKI_DOCS="$HOME/Documents/wiki/docs"
