@@ -27,6 +27,7 @@ export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 export GOPATH="$XDG_CONFIG_HOME/go"
 export BAT_THEME="gruvbox-dark"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # PATH additions
 export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/home/sar/.local/share/cargo/bin"
@@ -42,7 +43,6 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_QPA_PLATFORM=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=qt5ct
-export GTK_THEME=Gruvbox-Dark
 
 # XDG Desktop integration
 export XDG_CURRENT_DESKTOP=Hyprland

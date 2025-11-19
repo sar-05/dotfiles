@@ -1,3 +1,9 @@
+@define-color bg-color #282828;
+@define-color fg-color #d4be98;
+@define-color gray #7c6f64;
+@define-color orange #e78a4e;
+@define-color green #a9b665;
+
 * {
     border: none;
     border-radius: 0;
@@ -9,34 +15,34 @@
 
 window#waybar {
     background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
+    color: @fg-color;
 }
 
 #workspaces button {
     padding: 5px;
-    color: #555869;
+    color: @gray;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #a6adc8;
+    color: @orange;
 }
 
 #workspaces button.focused {
-    color: #a6adc8;
-    background: #eba0ac;
+    color: @fg-color;
+    background: @bg-color;
     border-radius: 10px;
 }
 
 #workspaces button.urgent {
-    color: #11111b;
-    background: #a6e3a1;
+    color: @bg-color;
+    background: @green;
     border-radius: 10px;
 }
 
 #workspaces button:hover {
-    background: #cdd6f4;
-    color: #11111b; 
+    background: @orange;
+    color: @bg-color; 
     border-radius: 10px;
 }
 
@@ -46,16 +52,13 @@ window#waybar {
 #battery,
 #pulseaudio,
 #network,
-#cpu,
-#memory,
 #workspaces,
 #tray,
 #backlight {
-    background: #1e1e2e;
+    background: @bg-color;
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 5px;
-    /* border: 1px solid #181825; */
 }
 
 #backlight {
@@ -67,26 +70,17 @@ window#waybar {
 }
 
 #workspaces {
-    background: #1e1e2e;
+    background: @bg-color;
     border-radius: 10px;
     margin-left: 10px;
     padding-right: 0px;
     padding-left: 5px;
 }
 
-#cpu {
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
-}
-
 #idle_inhibitor {
     border-radius: 0px 10px 10px 0px;
     padding-left: 0px;
     margin-right: 10px;
-}
-
-#memory {
-    border-radius: 10px 0px 0px 10px;
 }
 
 #window {
@@ -96,26 +90,26 @@ window#waybar {
 }
 
 #clock {
-    color: #a6adc8;
+    color: @fg-color;
     border-radius: 10px 10px 10px 10px;
     margin-left: 5px;
     border-right: 0px;
 }
 
 #network {
-    color:  #a6adc8;
+    color:  @fg-color;
     border-radius: 10px 0px 0px 10px;
 
 }
 
 #pulseaudio {
-    color: #a6adc8;
+    color: @fg-color;
     border-left: 0px;
     border-right: 0px;
 }
 
 #pulseaudio.microphone {
-    color: #a6adc8;
+    color: @fg-color;
     border-radius: 0px 10px 10px 0px;
     border-left: 0px;
     border-right: 0px;
@@ -123,7 +117,7 @@ window#waybar {
 }
 
 #battery {
-    color:#a6adc8;
+    color:@fg-color;
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
 }
