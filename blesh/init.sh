@@ -1,0 +1,112 @@
+bleopt default_keymap=vi
+bleopt prompt_ps1_transient=always
+
+
+# Vi/vim mode settings (must go inside the function)
+function blerc/vim-mode-hook {
+
+bleopt keymap_vi_mode_show=
+
+}
+blehook/eval-after-load keymap_vi blerc/vim-mode-hook
+
+# Cursor depending on vim mode
+ble-bind -m vi_nmap --cursor 2
+ble-bind -m vi_imap --cursor 5
+
+# Accept suggestion incrementaly
+ble-bind -m 'vi_imap' -f 'C-y' 'complete'
+# Accept suggestion all at once
+ble-bind -m 'auto_complete' -f 'C-S-y' 'auto_complete/@end insert'
+
+# Use bash-completion, if available, and avoid double-sourcing
+[[ $PS1 &&
+  ! ${BASH_COMPLETION_VERSINFO:-} &&
+  -f /usr/share/bash-completion/bash_completion ]] &&
+    . /usr/share/bash-completion/bash_completion
+
+# FZF integration, must be load by ble.sh if in use and
+# completions must load before it
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
+ble-import -d integration/fzf-menu
+
+# Colorscheme
+# highlighting related to editing
+ble-face -s region                    bg=60,fg=white
+ble-face -s region_target             bg=153,fg=black
+ble-face -s region_match              bg=55,fg=white
+ble-face -s region_insert             fg=27,bg=white
+ble-face -s disabled                  fg=242
+ble-face -s overwrite_mode            fg=black,bg=51
+ble-face -s vbell                     reverse
+ble-face -s vbell_erase               bg=252
+ble-face -s vbell_flash               fg=green,reverse
+ble-face -s prompt_status_line        fg=white,bg=240
+
+# syntax highlighting
+ble-face -s syntax_default            fg=white
+ble-face -s syntax_command            fg=green
+ble-face -s syntax_quoted             fg=yellow
+ble-face -s syntax_quotation          fg=yellow
+ble-face -s syntax_escape             fg=magenta
+ble-face -s syntax_expr               fg=33
+ble-face -s syntax_error              fg=red,bold
+ble-face -s syntax_varname            fg=202
+ble-face -s syntax_delimiter          fg=white,bold
+ble-face -s syntax_param_expansion    fg=133
+ble-face -s syntax_history_expansion  bg=94,fg=white
+ble-face -s syntax_function_name      fg=99,bold
+ble-face -s syntax_comment            fg=242
+ble-face -s syntax_glob               fg=198,bold
+ble-face -s syntax_brace              fg=37,bold
+ble-face -s syntax_tilde              fg=63,bold
+ble-face -s syntax_document           fg=100
+ble-face -s syntax_document_begin     fg=100,bold
+ble-face -s command_builtin_dot       fg=red,bold
+ble-face -s command_builtin           fg=green
+ble-face -s command_alias             fg=green
+ble-face -s command_function          fg=green
+ble-face -s command_file              fg=green
+ble-face -s command_keyword           fg=blue
+ble-face -s command_jobs              fg=red
+ble-face -s command_directory         fg=33,underline
+ble-face -s command_suffix            fg=white,bg=28
+ble-face -s command_suffix_new        fg=white,bg=124
+ble-face -s filename_directory        underline,fg=white
+ble-face -s filename_directory_sticky underline,fg=white,bg=26
+ble-face -s filename_link             underline,fg=cyan
+ble-face -s filename_orphan           underline,fg=16,bg=224
+ble-face -s filename_executable       underline,fg=green
+ble-face -s filename_setuid           underline,fg=black,bg=220
+ble-face -s filename_setgid           underline,fg=black,bg=191
+ble-face -s filename_other            underline,fg=white
+ble-face -s filename_socket           underline,fg=cyan,bg=black
+ble-face -s filename_pipe             underline,fg=lime,bg=black
+ble-face -s filename_character        underline,fg=white,bg=black
+ble-face -s filename_block            underline,fg=yellow,bg=black
+ble-face -s filename_warning          underline,fg=red
+ble-face -s filename_url              underline,fg=blue
+ble-face -s filename_ls_colors        underline
+ble-face -s varname_array             fg=orange,bold
+ble-face -s varname_empty             fg=31
+ble-face -s varname_export            fg=200,bold
+ble-face -s varname_expr              fg=99,bold
+ble-face -s varname_hash              fg=70,bold
+ble-face -s varname_new               fg=34
+ble-face -s varname_number            fg=64
+ble-face -s varname_readonly          fg=200
+ble-face -s varname_transform         fg=29,bold
+ble-face -s varname_unset             fg=245
+ble-face -s argument_option           fg=007
+ble-face -s argument_error            fg=black,bg=225
+
+# highlighting for completions
+ble-face -s auto_complete             fg=grey
+ble-face -s menu_complete_match       bold
+ble-face -s menu_complete_selected    reverse
+ble-face -s menu_desc_default         white
+ble-face -s menu_desc_type            ref:syntax_delimiter
+ble-face -s menu_desc_quote           ref:syntax_quoted
+ble-face -s menu_filter_fixed         bold
+ble-face -s menu_filter_input         fg=16,bg=229
