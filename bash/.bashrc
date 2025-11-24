@@ -18,6 +18,7 @@ PS1='[\u@\h \W]\$ '
 
 # Export XDG compliant history file
 export HISTFILE="${XDG_STATE_HOME}"/bash/history
+export HISTCONTROL="ignoredups"
 
 # FZF integration
 # eval "$(fzf --bash)"

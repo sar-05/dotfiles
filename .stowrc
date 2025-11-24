@@ -1,3 +1,6 @@
 --target=~/.config
 --ignore=.stowrc
 --ignore=desktop_files
+--ignore=zsh
+--ignore=tmux
+--ignore=bash
