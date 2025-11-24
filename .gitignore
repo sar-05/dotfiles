@@ -121,3 +121,6 @@ Thumbs.db
 **/*token*
 **/.env
 **/.env.local
+
+# State files
+GTK_THEME.conf
