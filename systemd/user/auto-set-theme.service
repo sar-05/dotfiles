@@ -1,0 +1,14 @@
+[Unit]
+Description=Sets light or dark theme for GTK and QT frameworks
+Documentation=https://github.com/sar-05/scripts
+After=graphical-session.target
+
+[Service]
+Type=exec
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
+ExecStart=/bin/sh -c ${HOME}/.local/bin/auto-set-theme
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

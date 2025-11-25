@@ -1,0 +1,11 @@
+[Unit]
+Description=Timer for auto-set-theme
+
+[Timer]
+OnCalendar=*-*-* 18:00
+OnCalendar=*-*-* 06:00
+Persistent=True
+
+[Install]
+WantedBy=timers.target
+

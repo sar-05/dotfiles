@@ -1,0 +1,13 @@
+[Unit]
+Description=Service to run the Protonmail bridge client
+Requires=pam_kwallet.service
+After=pam_kwallet.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/sar/.local/bin/proton-bridge start
+ExecStop=/home/sar/.local/bin/proton-bridge stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

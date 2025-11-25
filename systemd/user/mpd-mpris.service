@@ -1,0 +1,12 @@
+# /usr/lib/systemd/user/mpd-mpris.service
+[Unit]
+Description=mpd-mpris: An implementation of the MPRIS protocol for MPD
+Requires=mpd.service
+After=mpd.service
+
+[Service]
+ExecStart=/usr/bin/mpd-mpris -no-instance -network unix -host /tmp/mpd_socket
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
