@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=browser-picker
+NoDisplay=true
+Type=Application
+Comment=Browser Selector
+Terminal=false
+Exec=browser-picker %U

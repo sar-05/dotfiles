@@ -1,0 +1,44 @@
+#!/bin/bash
+set -euo pipefail
+
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/browser-picker/browser-picker.conf"
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <url>" >&2
+  exit 1
+fi
+
+URL=$1
+
+if [[ ! -f $CONFIG_FILE ]]; then
+  echo "Error: Config file not found at $CONFIG_FILE" >&2
+  exit 1
+fi
+
+declare -A browsers
+ordered_names=()
+
+while IFS='=' read -r name cmd; do
+  # Skip comments, empty lines and lines with spaces only
+  if [[ -z ${name//[[:space:]]/} || $name =~ ^# ]]; then
+    continue
+  fi
+
+  browsers["$name"]="$cmd"
+  ordered_names+=("$name")
+done <"$CONFIG_FILE"
+
+# Show the list using rofi in config order
+chosen=$(printf '%s\n' "${ordered_names[@]}" | walker --dmenu ) #-case-smart -p "Open with browser")
+
+# If user canceled
+[[ -z $chosen ]] && exit 0
+
+cmd=${browsers[$chosen]}
+if [[ -n $cmd ]]; then
+  # Run screen to dettach process to the background cleanly
+  screen -S "${cmd}" -dm ${cmd} ${URL}
+else
+  echo "Error: command for '$chosen' not found." >&2
+  exit 1
+fi
