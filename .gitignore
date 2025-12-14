@@ -77,9 +77,9 @@ nvim/spell/
 tmux/plugins/
 
 # Yazi (flavors and plugins are downloaded automatically)
-yazi/flavors/
-yazi/plugins/
-yazi/package.toml
+yazi/.config/yazi/flavors/
+yazi/.config/yazi/plugins/
+yazi/.config/yazi/package.toml
 
 # Waybar current theme symlink (points to different themes)
 waybar/themes/current.css
