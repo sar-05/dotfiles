@@ -13,7 +13,8 @@
     wrap_navigation: false,
     enable_mouse: true,
     status_update_interval_ms: 1000,
-    select_current_song_on_change: false,
+    select_current_song_on_change: true,
+    center_current_song_on_change: true,
     lyrics_dir: "~/Music/",
     album_art: (
         method: Auto,
