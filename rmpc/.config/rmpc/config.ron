@@ -98,7 +98,7 @@
     ),
     search: (
         case_sensitive: false,
-        mode: Contains,
+        mode: Regex,
         tags: [
             (value: "any",         label: "Any Tag"),
             (value: "artist",      label: "Artist"),
