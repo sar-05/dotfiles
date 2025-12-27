@@ -33,7 +33,6 @@ alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 alias cat='bat'
 alias man='batman'
 alias dtree="pacman -Qq | fzf --preview 'pactree -lur {} | sort' --layout reverse --bind 'enter:execute(pactree -lu {} | sort | less)'"
-alias vim=nvim
 alias gr='cd $(git rev-parse --show-toplevel)'
 alias cd='z'
 
@@ -56,6 +55,9 @@ eval "$(starship init bash)"
 
 # Oh-my-posh prompt
 # eval "$(oh-my-posh init bash --config ${HOME}/.config/ohmyposh/base.toml)"
+
+# Bob Neovim package manager
+source "${HOME}/.local/share/bob/env/env.sh"
 
 # Attach ble.sh after configuring bash
 [[ ! ${BLE_VERSION-} ]] || ble-attach
