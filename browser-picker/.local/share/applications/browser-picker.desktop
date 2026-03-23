@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=browser-picker
-NoDisplay=true
-Type=Application
-Comment=Browser Selector
-Terminal=false
-Exec=browser-picker %U
-MimeType=x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;
