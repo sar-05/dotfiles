@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 #
 # ~/.bashrc
 #
@@ -5,59 +6,56 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Source ble.sh in interactive sessions, but wait for atach signal
-[[ $- == *i* ]] && source -- "${HOME}/.local/share/blesh/ble.sh" --attach=none
+set -o vi
 
-# Vi mode
-# set -o vi
-
-# Color prompt
-# PS1='$(if [ $? -eq 0 ]; then echo "\[\033[0;36m\]"; else echo "\[\033[0;31m\]"; fi)[\w]\[\033[0m\]\$ '
-# Default prompt
-PS1='[\u@\h \W]\$ '
-
-# Export XDG compliant history file
-export HISTFILE="${XDG_STATE_HOME}"/bash/history
-export HISTCONTROL="ignoredups"
-
-# FZF integration
-# eval "$(fzf --bash)"
-
-# Aliases
-alias ls='ls --color'
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias vim='nvim'
-alias ff='custom_fastfetch'
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
-alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
-alias cat='bat'
-alias man='batman'
-alias dtree="pacman -Qq | fzf --preview 'pactree -lur {} | sort' --layout reverse --bind 'enter:execute(pactree -lu {} | sort | less)'"
+# allow alias to be expanded when defined
+# shellcheck disable=SC2139
+alias wget=wget --hsts-file="${XDG_DATA_HOME}/wget-hsts"
 alias gr='cd $(git rev-parse --show-toplevel)'
-alias cd='z'
+alias cat='bat -p'
+PS1='$([ $? == 0 ] && echo "\[\033[0;35m\]" || echo "\[\033[0;31m\]")\u\[\033[0m\]@\h \W -> '
 
-# Yazi shell wrapper
+# FZF integration for history
+export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
+eval "$(fzf --bash)"
+
+alias gcb="git branch | \
+  fzf --preview 'git show --color=always {-1}' \
+      --bind 'enter:become(git checkout {-1})' \
+      --height 40% \
+      --layout reverse"
+
+# shell wrapper to change the current working directory when exiting Yazi
 function y() {
-  #shellcheck disable=SC2155
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-  #shellcheck disable=SC2164
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+  local tmp cwd
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] &&
+    { builtin cd -- "$cwd" || return 1; }
+  rm -f -- "$tmp"
 }
 
-# Zoxide integration
-eval "$(zoxide init bash)"
+# wrapper for zathura pdf
+function pdf() {
+  if ! which zathura >/dev/null 2>&1; then
+    echo 'Unable to find Zathura PDF binary'
+    return 1
+  fi
 
-# Starship prompt
-eval "$(starship init bash)"
+  local files=()
+  for f in "$@"; do
+    # let *.pdf unquoted to use globs instead of regex
+    [[ "$f" == *.pdf ]] && files+=("$f")
+  done
 
-# Oh-my-posh prompt
-# eval "$(oh-my-posh init bash --config ${HOME}/.config/ohmyposh/base.toml)"
-
-# Bob Neovim package manager
-source "${HOME}/.local/share/bob/env/env.sh"
-
-# Attach ble.sh after configuring bash
-[[ ! ${BLE_VERSION-} ]] || ble-attach
+  if [[ ${#files[@]} -gt 0 ]]; then
+    zathura "${files[@]}" &
+    disown "$!"
+  else
+    echo "Not given any valid PDF files"
+    return 1
+  fi
+}
