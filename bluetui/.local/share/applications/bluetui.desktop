@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Bluetui
+GenericName=Bluetooth
+Comment=Configure Bluetooth device settings
+Exec=bluetui
+Terminal=true
+Type=Application
+Icon=bluetooth
+Keywords=bluetooth;
+Categories=Utility;Settings;ConsoleOnly
+StartupNotify=false
