@@ -1,0 +1,15 @@
+[Unit]
+Description=On screen display for keyboard shortcuts
+Documentation=https://github.com/ErikReider/SwayOSD
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+Restart=on-failure
+TimeoutSec=30
+ExecStart=/usr/bin/swayosd-server
+
+[Install]
+WantedBy=graphical-session.target
