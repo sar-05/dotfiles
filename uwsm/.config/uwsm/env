@@ -1,59 +1,34 @@
-# General environment variables for all graphical sessions
-# Format: export KEY=VALUE (no comments on same line)
-
-# XDG Base Directory Specification
-# Note: uwsm automatically sets these, but you can override if needed
-# export XDG_CONFIG_HOME="$HOME/.config"
-# export XDG_DATA_HOME="$HOME/.local/share"
-# export XDG_STATE_HOME="$HOME/.local/state"
-# export XDG_CACHE_HOME="$HOME/.cache"
-
 # Application-specific XDG compliance
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
-export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
-export LESSHISTFILE="$XDG_STATE_HOME/less/history"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
-export YARN_CACHE_FOLDER="$XDG_CACHE_HOME/yarn"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
+export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
+export GOPATH="${XDG_CONFIG_HOME}/go"
+export UNISON="${XDG_DATA_HOME}/unison"
 
-# General environment
+# editor
 export EDITOR=nvim
-export GCM_CREDENTIAL_STORE=secretservice
-export GOPATH="$XDG_CONFIG_HOME/go"
-export BAT_THEME="gruvbox-dark"
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
-# PATH additions
-export PATH="$PATH:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/home/sar/.local/share/cargo/bin"
-export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
+# use neovim as manpager
+export MANPAGER='nvim +Man!'
 
-# Cursor theme (general)
-export XCURSOR_SIZE=24
-export XCURSOR_THEME=rose-pine-hyprcursor
+# bat colorscheme
+export BAT_THEME=vague
 
-# Qt/GTK theming
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export QT_QPA_PLATFORM=wayland
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_QPA_PLATFORMTHEME=qt6ct
+# use app2unit as drop-in replacement for uwsm app
+export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
 
-# XDG Desktop integration
-export XDG_CURRENT_DESKTOP=Hyprland
-export XDG_SESSION_TYPE=wayland
-export XDG_SESSION_DESKTOP=Hyprland
-export XDG_DATA_DIRS=/usr/share:/var/lib/flatpak/exports/share:~/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+# fzf config file
+export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
 
-# KVM virt
+# mpc variable for custom mpd socket
+export MPD_HOST=/tmp/mpd_socket
+
+# connect to a system instance of qemu-kvm hypervisor
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
-# Wiki
-export WIKI="$HOME/Documents/wiki"
-export WIKI_IMAGES="$HOME/Documents/wiki/images"
-export WIKI_DOCS="$HOME/Documents/wiki/docs"
+# screenshots
+export GRIM_DEFAULT_DIR="$HOME/Pictures/Screenshots"
