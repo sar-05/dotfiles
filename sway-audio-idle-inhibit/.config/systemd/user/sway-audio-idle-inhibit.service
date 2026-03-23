@@ -1,0 +1,15 @@
+[Unit]
+Description=Inhibit idle while any application is outputting or receiving audio.
+Documentation=https://github.com/ErikReider/SwayAudioIdleInhibit
+PartOf=graphical-session.target
+After=graphical-session.target swayidle.service
+Requisite=graphical-session.target swayidle.service
+
+[Service]
+Type=simple
+Restart=on-failure
+TimeoutSec=30
+ExecStart=/usr/bin/sway-audio-idle-inhibit
+
+[Install]
+WantedBy=graphical-session.target
