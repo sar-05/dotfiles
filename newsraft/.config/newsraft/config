@@ -1,1 +1,2 @@
 bind m exec mpv "%l"
+bind c exec wl-copy "%l"
