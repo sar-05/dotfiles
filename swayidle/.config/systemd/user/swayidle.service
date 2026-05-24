@@ -4,16 +4,14 @@ Documentation=man:swayidle(1) https://github.com/swaywm/swayidle
 PartOf=graphical-session.target
 After=graphical-session.target
 Requisite=graphical-session.target
+AssertPathExists=%h/.config/swaylock/config
+AssertPathExists=%h/.config/swayidle/config
 
 [Service]
 Type=simple
 Restart=on-failure
 TimeoutSec=30
-ExecStart=/usr/bin/swayidle -w timeout 150 'brightnessctl --save set 1%'\
-resume 'brightnessctl --restore'\
-timeout 300 'systemctl suspend-then-hibernate'\
-before-sleep 'swaylock -f -c 000000'\
-lock 'swaylock -f -c 000000'\
+ExecStart=/usr/bin/swayidle -w
 
 [Install]
 WantedBy=graphical-session.target

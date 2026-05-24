@@ -2,13 +2,15 @@
 Description=On screen display for keyboard shortcuts
 Documentation=https://github.com/ErikReider/SwayOSD
 PartOf=graphical-session.target
-After=graphical-session.target
-Requisite=graphical-session.target
+After=dwl-session.target
+Requires=dwl-session.target
 
 [Service]
 Type=simple
 Restart=on-failure
+RestartSec=3
 TimeoutSec=30
+Environment="GTK_THEME=Adwaita-dark"
 ExecStart=/usr/bin/swayosd-server
 
 [Install]

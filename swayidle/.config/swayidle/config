@@ -1,0 +1,4 @@
+timeout 150 'brightnessctl --save set 1%' resume 'brightnessctl --restore'
+timeout 300 'systemctl suspend-then-hibernate'
+before-sleep 'swaylock'
+lock 'swaylock'
