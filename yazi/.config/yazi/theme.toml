@@ -1,0 +1,12 @@
+[flavor]
+dark = "vague"
+
+[icon]
+prepend_dirs = [
+    { name = "Repos", text = "", fg = "#b4d4cf" },
+    { name = "Backups", text = "󰁯", fg = "#b4d4cf" },
+    { name = "Templates", text = "󱔗", fg = "#b4d4cf" },
+]
+prepend_conds = [
+    { if = "dir", text = "", fg = "#bb9dbd" },
+]
