@@ -46,7 +46,7 @@ export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
 # screenshots directory for grim
-export GRIM_DEFAULT_DIR="$HOME/Pictures/Screenshots"
+export GRIM_DEFAULT_DIR="$HOME/Pictures/screenshots"
 if [ -d "$GRIM_DEFAULT_DIR" ]; then
   mkdir -p "$GRIM_DEFAULT_DIR"
 fi
