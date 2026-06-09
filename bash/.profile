@@ -46,3 +46,4 @@ _append_path() {
   esac
 }
 _append_path "$HOME/.local/bin"
+_append_path "$HOME/.local/share/gem/ruby/3.4.0/bin"

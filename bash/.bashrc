@@ -55,6 +55,9 @@ fi
 export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
 eval "$(fzf --bash)"
 
+export TRY_PATH="$HOME/Tries"
+eval "$(try init ~/Tries)"
+
 # shell wrapper to change the current working directory when exiting Yazi
 function y() {
   local tmp cwd
