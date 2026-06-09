@@ -1,6 +1,7 @@
 [Unit]
 Description=Idle manager for Wayland
-Documentation=man:swayidle(1) https://github.com/swaywm/swayidle
+Documentation=man:swayidle(1)
+Documentation=https://github.com/swaywm/swayidle
 PartOf=graphical-session.target
 After=graphical-session.target
 Requisite=graphical-session.target
@@ -9,8 +10,9 @@ AssertPathExists=%h/.config/swayidle/config
 
 [Service]
 Type=simple
-Restart=on-failure
-TimeoutSec=30
+Restart=always
+RestartSec=5s
+StartLimitBurst=10
 ExecStart=/usr/bin/swayidle -w
 
 [Install]
