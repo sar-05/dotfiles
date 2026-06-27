@@ -3,7 +3,27 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
+export EDITOR=nvim
+
+_append_path() {
+	case ":$PATH:" in
+	*":$1:"*) ;;
+	*) PATH="$PATH:$1" ;;
+	esac
+}
+_append_path "$HOME/.local/bin"
+_append_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
+
+export TRY_PATH="$HOME/Tries"
+eval "$(try init ~/Tries)"
+
+# bat colorscheme
+export BAT_THEME=vague
+
+# fzf config file
+export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
+
+# If not running interactively, don't source the next part
 [[ $- != *i* ]] && return
 
 set -o vi
@@ -36,57 +56,53 @@ export LESS_TERMCAP_ZO=$'\e[73m'
 export LESS_TERMCAP_ZW=$'\e[75m'
 export MANPAGER='less'
 
-# bat colorscheme
-export BAT_THEME=vague
-
-# fzf config file
-export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
-
 # connect to a system instance of qemu-kvm hypervisor
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
 # screenshots directory for grim
 export GRIM_DEFAULT_DIR="$HOME/Pictures/screenshots"
 if [ -d "$GRIM_DEFAULT_DIR" ]; then
-  mkdir -p "$GRIM_DEFAULT_DIR"
+	mkdir -p "$GRIM_DEFAULT_DIR"
 fi
 
 # FZF integration for history
 export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
 eval "$(fzf --bash)"
 
-export TRY_PATH="$HOME/Tries"
-eval "$(try init ~/Tries)"
-
 # shell wrapper to change the current working directory when exiting Yazi
 function y() {
-  local tmp cwd
-  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-  command yazi "$@" --cwd-file="$tmp"
-  IFS= read -r -d '' cwd <"$tmp"
-  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] &&
-    { builtin cd -- "$cwd" || return 1; }
-  rm -f -- "$tmp"
+	local tmp cwd
+	tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd <"$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] &&
+		{ builtin cd -- "$cwd" || return 1; }
+	rm -f -- "$tmp"
 }
 
 # wrapper for zathura pdf
 function pdf() {
-  if ! which zathura >/dev/null 2>&1; then
-    echo 'Unable to find Zathura PDF binary'
-    return 1
-  fi
+	if ! which zathura >/dev/null 2>&1; then
+		echo 'Unable to find Zathura PDF binary'
+		return 1
+	fi
 
-  local files=()
-  for f in "$@"; do
-    # let *.pdf unquoted to use globs instead of regex
-    [[ "$f" == *.pdf ]] && files+=("$f")
-  done
+	local files=()
+	for f in "$@"; do
+		# let *.pdf unquoted to use globs instead of regex
+		[[ "$f" == *.pdf ]] && files+=("$f")
+	done
 
-  if [[ ${#files[@]} -gt 0 ]]; then
-    zathura "${files[@]}" &
-    disown "$!"
-  else
-    echo "Not given any valid PDF files"
-    return 1
-  fi
+	if [[ ${#files[@]} -gt 0 ]]; then
+		zathura "${files[@]}" &
+		disown "$!"
+	else
+		echo "Not given any valid PDF files"
+		return 1
+	fi
 }
+
+# Exit cleanly instead of hanging if foot terminal is in use
+if [[ "$TERM" == 'foot' ]]; then
+	trap 'exit 0' SIGHUP
+fi
