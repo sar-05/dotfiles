@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+url=$(grim -g "$(slurp)" - | zbarimg --oneshot --quiet - | sed 's/QR-Code://g')
+echo "$url"
+xdg-open "$url"
