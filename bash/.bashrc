@@ -11,11 +11,8 @@ _append_path() {
 	*) PATH="$PATH:$1" ;;
 	esac
 }
-_append_path "$HOME/.local/bin"
-_append_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
 
-export TRY_PATH="$HOME/Tries"
-eval "$(try init ~/Tries)"
+_append_path "$HOME/.local/bin"
 
 # bat colorscheme
 export BAT_THEME=vague
