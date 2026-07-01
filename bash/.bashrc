@@ -28,7 +28,7 @@ set -o vi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias gr='cd $(git rev-parse --show-toplevel)'
-alias cat='bat'
+alias less='bat --paging=always'
 alias get-conservation-mode='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 # allow alias to be expanded when defined
 # shellcheck disable=SC2139
