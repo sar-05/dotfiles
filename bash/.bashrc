@@ -66,6 +66,9 @@ fi
 export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
 eval "$(fzf --bash)"
 
+# default zk notebook
+export ZK_NOTEBOOK_DIR="${HOME}/Documents/notebook"
+
 # shell wrapper to change the current working directory when exiting Yazi
 function y() {
 	local tmp cwd
