@@ -1,0 +1,13 @@
+[Unit]
+Description=Super simple wallpaper application for Wayland compositors
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wbg %h/Pictures/wallpapers/creation_of_adam_ascii_background.jpg
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
