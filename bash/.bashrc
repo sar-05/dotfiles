@@ -3,8 +3,6 @@
 # ~/.bashrc
 #
 
-export EDITOR=nvim
-
 _append_path() {
 	case ":$PATH:" in
 	*":$1:"*) ;;
@@ -12,65 +10,76 @@ _append_path() {
 	esac
 }
 
-_append_path "$HOME/.local/bin"
 
-# bat colorscheme
-export BAT_THEME=vague
+_prepend_path() {
+	case ":$PATH:" in
+	*":$1:"*) ;;
+	*) PATH="$1:$PATH" ;;
+	esac
+}
 
-# fzf config file
-export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
+_append_path "${HOME}/.local/bin"
 
 # If not running interactively, don't source the next part
 [[ $- != *i* ]] && return
 
 set -o vi
 
+if command -v nvim >/dev/null;then
+  export EDITOR=nvim
+fi
+
+if command -v bat >/dev/null; then
+  export BAT_THEME=vague
+  export LESSCOLORIZER='bat --color=always --style=plain'
+fi
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias gr='cd $(git rev-parse --show-toplevel)'
-alias less='bat --paging=always'
+alias tldr='tldr --pager'
 alias get-conservation-mode='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 # allow alias to be expanded when defined
 # shellcheck disable=SC2139
 alias wget=wget --hsts-file="${XDG_DATA_HOME}/wget-hsts"
 
-PS1='$([ $? == 0 ] && echo "\[\033[0;35m\]" || echo "\[\033[0;31m\]")\u\[\033[0m\]@\h \W -> '
-
-# less colors for man pages
-export MANROFFOPT='-c'
-export LESS_TERMCAP_mb=$'\e[1;31m'
-export LESS_TERMCAP_md=$'\e[1;31m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[1;33;44m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[4;1;32m'
-export LESS_TERMCAP_mr=$'\e[7m'
-export LESS_TERMCAP_mh=$'\e[2m'
-export LESS_TERMCAP_ZN=$'\e[74m'
-export LESS_TERMCAP_ZV=$'\e[75m'
-export LESS_TERMCAP_ZO=$'\e[73m'
-export LESS_TERMCAP_ZW=$'\e[75m'
-export MANPAGER='less'
+# interactive prompt coloring based on last exit code
+PROMPT_DIRTRIM=2
+PROMPT_COMMAND='PS1="\[\e[01;32m\]\u@\h \[$([ $? -eq 0 ] && echo "\e[34m" || echo "\e[31m")\]\w \$\[\e[0m\] "'
 
 # connect to a system instance of qemu-kvm hypervisor
-export LIBVIRT_DEFAULT_URI='qemu:///system'
+if command -v qemu-system-x86_64 >/dev/null; then
+  export LIBVIRT_DEFAULT_URI='qemu:///system'
+fi
 
 # screenshots directory for grim
-export GRIM_DEFAULT_DIR="$HOME/Pictures/screenshots"
-if [ -d "$GRIM_DEFAULT_DIR" ]; then
+if command -v grim >/dev/null; then
+  export GRIM_DEFAULT_DIR="$HOME/Pictures/screenshots"
+fi
+
+if [ -n "${GRIM_DEFAULT_DIR}" ] && [ ! -d "$GRIM_DEFAULT_DIR" ]; then
 	mkdir -p "$GRIM_DEFAULT_DIR"
 fi
 
-# FZF integration for history
-export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
-eval "$(fzf --bash)"
+# FZF integration
+if command -v fzf >/dev/null; then
+  export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/opts"
+  export FZF_ALT_C_OPTS="--walker dir,follow --preview 'tree -C {}'"
+  eval "$(fzf --bash)"
+fi
 
 # default zk notebook
+if command -v zk >/dev/null; then
 export ZK_NOTEBOOK_DIR="${HOME}/Documents/notebook"
+fi
+
+# opencode binary
+if command -v opencode >/dev/null; then
+  export PATH=/home/sar/.opencode/bin:$PATH
+fi
 
 # shell wrapper to change the current working directory when exiting Yazi
-function y() {
+command -v yazi >/dev/null && function y() {
 	local tmp cwd
 	tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	command yazi "$@" --cwd-file="$tmp"
@@ -80,29 +89,22 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# wrapper for zathura pdf
-function pdf() {
-	if ! which zathura >/dev/null 2>&1; then
-		echo 'Unable to find Zathura PDF binary'
-		return 1
-	fi
+toggle_localrust(){
+  local status='disaled'
+  local rustup_path="${HOME}/.local/share/cargo/bin"
 
-	local files=()
-	for f in "$@"; do
-		# let *.pdf unquoted to use globs instead of regex
-		[[ "$f" == *.pdf ]] && files+=("$f")
-	done
+  if [ "${PATH}" == "${rustup_path}"* ]; then
+    PATH="${PATH//${rustup_path}:}"
+  else
+    _prepend_path "${rustup_path}"
+    status='enabled'
+  fi
 
-	if [[ ${#files[@]} -gt 0 ]]; then
-		zathura "${files[@]}" &
-		disown "$!"
-	else
-		echo "Not given any valid PDF files"
-		return 1
-	fi
+  echo "localrust ${status}"
 }
 
 # Exit cleanly instead of hanging if foot terminal is in use
-if [[ "$TERM" == 'foot' ]]; then
+if [ "${TERM}" == 'foot' ]; then
 	trap 'exit 0' SIGHUP
 fi
+
