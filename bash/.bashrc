@@ -19,6 +19,7 @@ _prepend_path() {
 }
 
 _append_path "${HOME}/.local/bin"
+_append_path "${XDG_DATA_HOME}/uv/tools/qmk/bin"
 
 # If not running interactively, don't source the next part
 [[ $- != *i* ]] && return
@@ -77,6 +78,8 @@ fi
 if command -v opencode >/dev/null; then
   export PATH=/home/sar/.opencode/bin:$PATH
 fi
+
+source ~/Repos/qmk_firmware/util/qmk_tab_complete.sh
 
 # shell wrapper to change the current working directory when exiting Yazi
 command -v yazi >/dev/null && function y() {
