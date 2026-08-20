@@ -1,0 +1,191 @@
+config_version = 12
+
+[audio]
+enable_overdrive = true
+
+[bar.default]
+capsule = true
+capsule_fill = "surface"
+end = [ "tray", "notifications", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session" ]
+margin_ends = 0
+padding = 0
+radius = 0
+radius_bottom_left = 3
+radius_bottom_right = 3
+start = [ "workspaces", "spacer_2", "media" ]
+thickness = 25
+
+[control_center.calendar]
+show_events_card = false
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "lux/ideapad-conservation-mode:conservation-mode"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 300.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 360.0
+
+[location]
+address = "Reynosa, Mexico"
+
+[lockscreen]
+fingerprint = false
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 768.0
+    cy = 771.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[notification]
+filter_order = [ "filter" ]
+offset_x = 14
+offset_y = 14
+
+[osd]
+offset_y = 18
+position = "bottom_center"
+
+[plugins]
+auto_update = false
+enabled = [ "lux/ideapad-conservation-mode" ]
+
+[shell]
+avatar_path = "/home/sar/Pictures/profile/shell_big.svg"
+button_borders = false
+card_borders = false
+clipboard_auto_paste = "off"
+launch_apps_as_systemd_services = true
+polkit_agent = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    categories = false
+
+    [shell.panel]
+    borders = false
+
+[theme]
+builtin = "Rosé Pine"
+community_palette = "Rose Pine Alt"
+custom_palette = "Vague"
+source = "custom"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "gtk3", "gtk4", "niri" ]
+
+[wallpaper.default]
+path = "/home/sar/Pictures/Wallpapers/beyza-yurtkuran-G_Bf3feWyAk-unsplash.jpg"
+
+[wallpaper.last]
+path = "/home/sar/Pictures/Wallpapers/beyza-yurtkuran-G_Bf3feWyAk-unsplash.jpg"
+
+[wallpaper.monitors.eDP-1]
+path = "/home/sar/Pictures/Wallpapers/beyza-yurtkuran-G_Bf3feWyAk-unsplash.jpg"
+
+[widget.clipboard]
+enabled = false
+
+[widget.launcher]
+enabled = false
+
+[widget.media]
+hide_when_no_media = true
+max_length = 150
+
+[widget.network]
+show_label = false
+
+[widget.session]
+enabled = false
+
+[widget.spacer_2]
+enabled = false
+type = "spacer"
+
+[widget.tray]
+drawer = true
+
+[widget.wallpaper]
+enabled = false
+
+[widget.workspaces]
+empty_color = "on_surface_variant"
+focused_color = "on_surface"
+font_weight = 500
+occupied_color = "on_surface"
+pill_scale = 0.40000000000000002
+scale = 1.2
+show_labels = false
